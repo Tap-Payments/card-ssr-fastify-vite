@@ -1,0 +1,23 @@
+.cardinput_class {
+	letter-spacing: 0;
+	border: 0px;
+	outline: none;
+	margin-inline: var(--card-margin-inline);
+	flex: 1;
+	direction: ltr !important;
+}
+
+.cardinput_class::placeholder {
+	font-weight: 300;
+}
+
+.hide_left {
+	animation-name: fadeout;
+	animation-fill-mode: forwards;
+	animation-duration: 0.5s;
+	display: none;
+}
+
+.input_error {
+	color: red;
+}

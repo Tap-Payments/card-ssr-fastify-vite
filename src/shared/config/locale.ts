@@ -1,0 +1,132 @@
+export const Locale = {
+	ar: {
+		Common: {
+			cancel: 'إلغاء',
+			change: 'تعديل',
+			close: 'غلق',
+			confirm: 'تأكيد',
+			done: 'تم',
+			edit: 'تعديل',
+			email: 'البريد',
+			item: 'منتج',
+			items: 'منتجات',
+			next: 'التالي',
+			password: 'كلمة السر',
+			phone: 'الهاتف',
+			previous: 'السابق',
+			recent: 'كروت سابقة'
+		},
+		Hints: {
+			Default: {
+				scan: 'جاهز للتصوير'
+			},
+			Error: {
+				notEnglishInput: 'Change your keyboard language to EN',
+				wrongCardNumber: 'رقم غير صحيح',
+				wrongCountry: 'دولة البطاقة %@ غير مدعومة',
+				wrongFundSource: 'رقم البطاقه %@ غير صحيح'
+			},
+			GoPayLogin: {
+				otp: 'تم إرسال الرمز لـ',
+				password: ''
+			},
+			Scanned: {
+				successFullScan: 'تم  تصوير الكارت بنجاح'
+			},
+			Warning: {
+				missingCVV: 'أدخل %i-أرقام الرمز الأمني (عادة بخلف البطاقة.)',
+				missingExpiryCVV: 'تاريخ الإنتهاء غير صحيح',
+				missingName: 'يجب إدخال ٣ أحرف على الاقل للإسم'
+			}
+		},
+		TapCardInputKit: {
+			additionalLinePlaceHolder: 'بيانات إضافية',
+			cardCVVPlaceHolder: 'الرمز الأمني',
+			cardCVVPlaceHolderShort: 'الرمز',
+			cardExpiryPlaceHolder: 'ش/س',
+			cardNamePlaceHolder: 'صاحب البطاقة (٤ حروف على الأقل)',
+			cardNamePlaceHolderThree: 'صاحب البطاقة (٣ حروف على الأقل)',
+			cardNumberPlaceHolder: 'رقم البطاقة',
+			cardSaveForTapInfoMessage:
+				'ادفع في أكثر من 100000 متجر محلي بنقرة واحدة فقط. يتم تشفير بياناتك لحمايتك وإدارتها بسهولة من خلال إعداد بريد إلكتروني بسيط.',
+			cardSaveForTapInfoTitle: 'إدفع خلال تاب بضغطة واحدة',
+			cardSaveForTapLabel: 'إحفظ للإستعمال في كل متاجر Tap',
+			cardSaveLabel: 'لشراء أسرع إحفظ البطاقة',
+			cardSectionTitle: 'أدخل بيانات البطاقة',
+			cardSectionTitleOr: 'أو أدخل بيانات البطاقة',
+			cityPlaceHolder: 'المدينة',
+			credit: 'الإئتمانية',
+			debit: 'البنكية',
+			emailPlaceHolder: 'email@email.com',
+			enterCardLabel: 'رقم البطاقة %@',
+			flatPlaceHolder: 'رقم الشقة أو المبنى',
+			savedCardSectionTitle: 'البطاقة المحفوظة',
+			weSupport: 'نحن ندعم'
+		}
+	},
+	en: {
+		Common: {
+			cancel: 'Cancel',
+			change: 'change',
+			close: 'CLOSE',
+			confirm: 'Confirm',
+			done: 'Done',
+			edit: 'Edit',
+			email: 'email',
+			item: 'ITEM',
+			items: 'ITEMS',
+			next: 'Next',
+			password: 'Password',
+			phone: 'phone',
+			previous: 'Previous',
+			recent: 'Recent'
+		},
+		Hints: {
+			Default: {
+				scan: 'Ready to scan.'
+			},
+			Error: {
+				notEnglishInput: 'Change your keyboard language to EN',
+				wrongCardNumber: 'Card number is invalid',
+				wrongCountry: 'Card’s country %@ is not supported',
+				wrongFundSource: '%@ card number is not supported'
+			},
+			GoPayLogin: {
+				otp: 'OTP has been sent to',
+				password: ''
+			},
+			Scanned: {
+				successFullScan: 'Your card has been scanned successfully.'
+			},
+			Warning: {
+				missingCVV: 'Enter the %i-digits CVV (usually at the back of the card.)',
+				missingExpiryCVV: 'Expiry date is invalid.',
+				missingName: 'Card name should be greater than 3 charachters'
+			}
+		},
+		TapCardInputKit: {
+			additionalLinePlaceHolder: 'Additional line',
+			cardCVVPlaceHolder: 'CVV',
+			cardCVVPlaceHolderShort: 'CVV',
+			cardExpiryPlaceHolder: 'MM/YY',
+			cardNamePlaceHolder: 'Card Holder Name (min. 4 characters)',
+			cardNamePlaceHolderThree: 'Card Holder Name (min. 3 characters)',
+			cardNumberPlaceHolder: 'card number',
+			cardSaveForTapInfoMessage:
+				'Pay at over 100,000 local stores with just one click. Your details are encrypted for your protection and easy to manage through a simple email setup.',
+			cardSaveForTapInfoTitle: '1 Click Checkout with Tap',
+			cardSaveForTapLabel: 'Save for other stores powered by Tap',
+			cardSaveLabel: 'Save card for later',
+			cardSectionTitle: 'ENTER CARD',
+			cardSectionTitleOr: 'OR ENTER CARD',
+			cityPlaceHolder: 'City',
+			credit: 'Credit',
+			debit: 'Debit',
+			emailPlaceHolder: 'email@email.com',
+			enterCardLabel: '%@ Card number',
+			flatPlaceHolder: 'Flat or building number',
+			savedCardSectionTitle: 'SAVED CARD',
+			weSupport: 'WE ACCEPT'
+		}
+	}
+} as const
