@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../app/store'
-import { CreditCardTypeSecurityCodeLabel } from '../types/cardtypeI'
+import { CreditCardTypeSecurityCodeLabel } from '@shared/types/cardtypeI'
 
 interface PrevCvvState {
 	value: string

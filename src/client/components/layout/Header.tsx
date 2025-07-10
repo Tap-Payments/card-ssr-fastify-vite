@@ -1,30 +1,25 @@
 import React, { memo, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-//
-import { resetCard, getCard, setCardValue, setTypeSavedCard } from '../../features/cardSlice'
-import { resetCVV, recoverLatestCvv, getCVV } from '../../features/cvvSlice'
-import { resetDate, getDate, setDateValue, setDateValid } from '../../features/dateSlice'
-
-import { resetHolderNameValue, getHolderName } from '../../features/holdernameSlice'
-import { getConfig, setHideSavedCardForLoading } from '../../features/configSlice'
-//
-import { sendEventGeneric, isFuture } from '../../utils'
-//
+import { resetCard, getCard, setCardValue, setTypeSavedCard } from '@features/cardSlice'
+import { resetCVV, recoverLatestCvv, getCVV } from '@features/cvvSlice'
+import { resetDate, getDate, setDateValue, setDateValid } from '@features/dateSlice'
+import { resetHolderNameValue, getHolderName } from '@features/holdernameSlice'
+import { getConfig, setHideSavedCardForLoading } from '@features/configSlice'
+import { sendEventGeneric, isFuture } from '@utils'
 import Cvv from '../inputs/Cvv'
 import MinCard from '../inputs/MinCard'
 import CreditCard from '../inputs/CreditCard'
 import ExpiryDate from '../inputs/ExpiryDate'
-//
 import CancelIcon from '../icons/CancelIcon'
 import HeaderIcon from './header/HeaderIcon'
 import BackIcon from '../icons/BackIcon'
-//
-import styles from './Header.module.css'
-import { setSaveCardForLater, getGlobalState, setGlobalMode, setLoadedCard } from '../../features/globalSlice'
+import { setSaveCardForLater, getGlobalState, setGlobalMode, setLoadedCard } from '@features/globalSlice'
 import { useErrors, useTheme } from '../../hooks'
 import ScannerIcon from '../icons/ScannerIcon'
 import NFCIcon from '../icons/NFCIcon'
-import { Integration } from '../../types'
+import { Integration } from '@shared/types'
+
+import styles from './Header.module.css'
 
 interface HeaderProps {
 	validClass: boolean

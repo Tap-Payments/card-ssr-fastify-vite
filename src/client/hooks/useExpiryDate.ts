@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux'
-import { setDateValid, setDateValue, setIsUserDoneTyping, setPrevDateValue } from '../features/dateSlice'
-import { allCharsInEN, isFuture, removeWhitespaces } from '../utils'
-import { setIsInEnglish } from '../features/cardSlice'
+import { setDateValid, setDateValue, setIsUserDoneTyping, setPrevDateValue } from '@features/dateSlice'
+import { allCharsInEN, isFuture, removeWhitespaces } from '@utils'
+import { setIsInEnglish } from '@features/cardSlice'
 
 export const useExpiryDate = () => {
 	const mask = '99/99'

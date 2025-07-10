@@ -1,15 +1,16 @@
 import React, { ElementRef, useCallback, useEffect, useLayoutEffect, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { getCVV } from '../../../features/cvvSlice'
-import { changeHolderNameValue, getHolderName, setIsInEnglish } from '../../../features/holdernameSlice'
-import { getCard } from '../../../features/cardSlice'
+import { getCVV } from '@features/cvvSlice'
+import { changeHolderNameValue, getHolderName, setIsInEnglish } from '@features/holdernameSlice'
+import { getCard } from '@features/cardSlice'
 import CancelIcon from '../../icons/CancelIcon'
-import { getConfig } from '../../../features/configSlice'
+import { getConfig } from '@features/configSlice'
+import { useTheme } from '@hooks/useTheme'
+import { getGlobalState } from '@features/globalSlice'
+import { allCharsInEN, isValidHolderName, removeNonHolderNameChars, removeWhitespaces } from '@utils'
+
 import styles from './CardHolderName.module.css'
-import { useTheme } from '../../../hooks'
-import { getGlobalState } from '../../../features/globalSlice'
-import { allCharsInEN, isValidHolderName, removeNonHolderNameChars, removeWhitespaces } from '../../../utils'
 
 const CardHolderName = () => {
 	const dispatch = useDispatch()

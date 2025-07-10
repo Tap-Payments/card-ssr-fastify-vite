@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../app/store'
-import { BinTypeI } from '../types/BinTypeI'
+import { BinTypeI } from '@shared/types/BinTypeI'
 import { CreditCardType } from 'credit-card-type/dist/types'
-import { removeWhitespaces } from '../utils'
+import { removeWhitespaces } from '@utils'
 
 export interface CardSliceState {
 	value: string

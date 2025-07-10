@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import API from '../api'
-import { getConfig } from '../features/configSlice'
-import { setLoading, setThreeDsHeight } from '../features/globalSlice'
-import { sendEventGeneric } from '../utils'
+import { getConfig } from '@features/configSlice'
+import { setLoading, setThreeDsHeight } from '@features/globalSlice'
+import { sendEventGeneric } from '@utils'
 export const useHandleRedirects = async () => {
 	const dispatch = useDispatch()
 	const { config: configProps, refererUrl } = useSelector(getConfig)

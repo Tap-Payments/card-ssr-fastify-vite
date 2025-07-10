@@ -1,13 +1,15 @@
 import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { setMode, getCard } from '../../../features/cardSlice'
-import styles from './MinCard.module.css'
-import { getGlobalState } from '../../../features/globalSlice'
-import { useLocale } from '../../../hooks'
-import { useInputStyle } from '../../../hooks/useInputStyle'
-import { useCardNumber } from '../../../hooks/useCardNumber'
 import { useMask, format } from '@react-input/mask'
+
+import { setMode, getCard } from '@features/cardSlice'
+import { getGlobalState } from '@features/globalSlice'
+import { useLocale } from '@hooks/useLocale'
+import { useInputStyle } from '@hooks/useInputStyle'
+import { useCardNumber } from '@hooks/useCardNumber'
+
+import styles from './MinCard.module.css'
 
 const MinCard = ({ tinyScreen }: { tinyScreen: boolean }) => {
 	const dispatch = useDispatch()

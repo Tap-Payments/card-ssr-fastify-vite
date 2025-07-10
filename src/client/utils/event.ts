@@ -1,4 +1,4 @@
-import { EventMessage } from '../types/event'
+import { EventMessage } from '@shared/types/event'
 
 export const sendEventGeneric = <T = any>(url: string, message: EventMessage<T>) => {
 	if (message.event === 'dimension') {

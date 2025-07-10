@@ -2,8 +2,9 @@ import React, { memo } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useErrors, useTheme } from '../../../../hooks'
-import { getConfig } from '../../../../features/configSlice'
+import { useTheme } from '@hooks/useTheme'
+import { useErrors } from '@hooks/useErrors'
+import { getConfig } from '@features/configSlice'
 
 import styles from './ToolTip.module.css'
 

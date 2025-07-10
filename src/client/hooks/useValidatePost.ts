@@ -1,9 +1,9 @@
-import { sendEventGeneric } from './../utils/event'
+import { sendEventGeneric } from '@utils'
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { getConfig } from '../features/configSlice'
-import { useErrors } from '../hooks'
-import { CardEvent } from '../types/Card'
+import { getConfig } from '@features/configSlice'
+import { useErrors } from './useErrors'
+import { CardEvent } from '@shared/types/Card'
 
 export const useValidatePost = () => {
 	const {

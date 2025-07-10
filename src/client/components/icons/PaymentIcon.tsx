@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import type { CardBrands, PAYMENT_METHODS } from '../../types/paymentOption'
+import type { CardBrands, PAYMENT_METHODS } from '@shared/types/paymentOption'
 import { Opacity } from '../Animation'
 
 interface PaymentIconProps

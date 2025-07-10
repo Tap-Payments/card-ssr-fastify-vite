@@ -4,17 +4,19 @@ import { useTranslation } from 'react-i18next'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useMask, format } from '@react-input/mask'
 
-import { getCVV, setCvvIsValid, setCvvErrorText, setIsUserDoneTyping } from '../../../features/cvvSlice'
-import { getCard, setMode } from '../../../features/cardSlice'
-import { maskStringFromNumber } from '../../../utils'
-import { getGlobalState } from '../../../features/globalSlice'
+import { getCVV, setCvvIsValid, setCvvErrorText, setIsUserDoneTyping } from '@features/cvvSlice'
+import { getCard, setMode } from '@features/cardSlice'
+import { maskStringFromNumber } from '@utils'
+import { getGlobalState } from '@features/globalSlice'
 import CvvIcon from '../../icons/CvvIcon'
-import { getDate } from '../../../features/dateSlice'
+import { getDate } from '@features/dateSlice'
+import { useTheme } from '@hooks/useTheme'
+import { useLocale } from '@hooks/useLocale'
+import { useCvv } from '@hooks/useCvv'
+import { useInputStyle } from '@hooks/useInputStyle'
+import { getConfig } from '@features/configSlice'
+
 import styles from './Cvv.module.css'
-import { useLocale, useTheme } from '../../../hooks'
-import { useCvv } from '../../../hooks/useCvv'
-import { useInputStyle } from '../../../hooks/useInputStyle'
-import { getConfig } from '../../../features/configSlice'
 
 const Cvv = ({ tinyScreen, hideTranslate }: { tinyScreen: boolean; hideTranslate: boolean }) => {
 	const dispatch = useDispatch()

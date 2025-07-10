@@ -1,4 +1,4 @@
-import { Edges } from '../types'
+import { Edges } from '@shared/types'
 
 export const Borders: Record<Edges, number> = {
 	[Edges.CIRCULAR]: 30,

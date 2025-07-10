@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../app/store'
-import { removeWhitespaces } from '../utils'
+import { removeWhitespaces } from '@utils'
 
 export interface HolderNameState {
 	value: string

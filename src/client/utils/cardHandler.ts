@@ -1,8 +1,8 @@
 import valid from 'card-validator'
 import creditCardType from 'credit-card-type'
-import type { CardSliceState } from '../features/cardSlice'
+import type { CardSliceState } from '@features/cardSlice'
 import type { CreditCardTypeCardBrandId } from 'credit-card-type/dist/types'
-import { CREDIT_CARD_NUMBER } from '../config/constant'
+import { CREDIT_CARD_NUMBER } from '@shared/config/constant'
 import { removeWhitespaces } from './string'
 
 const overWriteCardsLength = () => {

@@ -15,6 +15,7 @@
 		"@shared": "src/shared"
 	},
 	"scripts": {
+		"predev": "node src/shared/scripts/generateTheme.js && node src/shared/scripts/generateLocale.js && yarn run prettier --log-level=silent --write \"src/**/*.{ts,json}\"",
 		"dev:client": "yarn build:client && vite --config vite.config.ts dev",
 		"dev:server": "nodemon -e ts,tsx --exec 'ts-node src/server/index.ts'",
 		"build:client": "cross-env NODE_ENV=production vite build --outDir dist/client --ssrManifest",

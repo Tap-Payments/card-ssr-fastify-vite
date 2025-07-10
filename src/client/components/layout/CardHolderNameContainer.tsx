@@ -1,9 +1,9 @@
 import React, { memo } from 'react'
-
-import { useTheme } from '../../hooks'
+import { useTheme } from '@hooks/useTheme'
 import CardHolderName from '../inputs/CardHolderName/CardHolderName'
-import styles from './CardHolderNameContainer.module.css'
 import Wrapper from './container'
+
+import styles from './CardHolderNameContainer.module.css'
 
 const CardHolderNameContainer = ({ tinyScreen }: { tinyScreen: boolean }) => {
 	const { theme, getColorProperty } = useTheme()

@@ -7,13 +7,13 @@ import { useCvv } from './useCvv'
 import { useCardNumber } from './useCardNumber'
 import { useExpiryDate } from './useExpiryDate'
 import { isFuture, sendEventGeneric } from '../utils'
-import type { CardInputs } from '../types/Card'
-import type { EventMessage } from '../types/event'
-import { Integration, Purpose, Scope } from '../types'
-import { getDate, resetDate, setDateValid, setDateValue } from '../features/dateSlice'
-import { getCVV, resetCVV, setCvvSize, setCvvValue } from '../features/cvvSlice'
-import { changeHolderNameValue, getHolderName, resetHolderNameValue } from '../features/holdernameSlice'
-import { getExactCardValue, resetCard, setMode, setTypeSavedCard } from '../features/cardSlice'
+import type { CardInputs } from '@shared/types/Card'
+import type { EventMessage } from '@shared/types/event'
+import { Integration, Purpose, Scope } from '@shared/types'
+import { getDate, resetDate, setDateValid, setDateValue } from '@features/dateSlice'
+import { getCVV, resetCVV, setCvvSize, setCvvValue } from '@features/cvvSlice'
+import { changeHolderNameValue, getHolderName, resetHolderNameValue } from '@features/holdernameSlice'
+import { getExactCardValue, resetCard, setMode, setTypeSavedCard } from '@features/cardSlice'
 import {
 	setAuthenticationURL,
 	setShowAuthenticationIframe,
@@ -21,7 +21,7 @@ import {
 	setFinishAuthenticationIframe,
 	setIs3DsActive,
 	getAuthentication
-} from '../features/authenticationSlice'
+} from '@features/authenticationSlice'
 import {
 	getConfig,
 	setConfigPaymentOption,
@@ -32,7 +32,7 @@ import {
 	setIP,
 	setClickToPay,
 	setScope
-} from '../features/configSlice'
+} from '@features/configSlice'
 import {
 	setGlobalMode,
 	setLoadedCard,
@@ -40,7 +40,7 @@ import {
 	getGlobalState,
 	setLoading,
 	setHideCardFor3ds
-} from '../features/globalSlice'
+} from '@features/globalSlice'
 
 // eslint-disable-next-line
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))

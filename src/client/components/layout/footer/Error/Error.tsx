@@ -1,9 +1,10 @@
 import React, { memo } from 'react'
 
 import Wrapper from '../../container'
-import { useTheme } from '../../../../hooks'
-import styles from './Error.module.css'
+import { useTheme } from '@hooks/useTheme'
 import { Opacity } from '../../../Animation'
+
+import styles from './Error.module.css'
 
 interface ErrorProps {
 	text: string

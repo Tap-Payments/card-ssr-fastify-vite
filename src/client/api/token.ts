@@ -1,12 +1,12 @@
 import type { AxiosError, AxiosRequestConfig } from 'axios'
-import type { configProps } from '../types/configProps'
+import type { configProps } from '@shared/types/configProps'
 import HTTPClient, { type BackendError } from './axios'
 
-import type { Card } from '../types/Card'
-import type { TokenTypeI } from '../types/TokenTypeI'
-import type { Authentication } from '../types/Authentication'
+import type { Card } from '@shared/types/Card'
+import type { TokenTypeI } from '@shared/types/TokenTypeI'
+import type { Authentication } from '@shared/types/Authentication'
 import { getConsentData, mapCustomerToApi, mapOrderToApi } from '../utils/token'
-import { Purpose, Scope } from '../types'
+import { Purpose, Scope } from '@shared/types'
 
 type createTokenRes = TokenTypeI
 
@@ -156,7 +156,7 @@ const createToken = async ({
 				consent: isSaveCardSwitchVisible
 					? {
 							acknowledge: !!saveCard
-					  }
+						}
 					: undefined,
 				merchant: authentication?.merchant,
 				order: mapOrderToApi(authentication),

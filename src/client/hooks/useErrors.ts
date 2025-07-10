@@ -1,14 +1,14 @@
 import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { getConfig } from '../features/configSlice'
-import { getCard } from '../features/cardSlice'
-import { getDate } from '../features/dateSlice'
-import { getCVV } from '../features/cvvSlice'
-import { getHolderName } from '../features/holdernameSlice'
-import { CardBrands } from '../types/paymentOption'
+import { getConfig } from '@features/configSlice'
+import { getCard } from '@features/cardSlice'
+import { getDate } from '@features/dateSlice'
+import { getCVV } from '@features/cvvSlice'
+import { getHolderName } from '@features/holdernameSlice'
+import { CardBrands } from '@shared/types/paymentOption'
 import { getGlobalState } from '../features/globalSlice'
 import { useTranslation } from 'react-i18next'
-import { CardFundingSource, Integration } from '../types'
+import { CardFundingSource, Integration } from '@shared/types'
 //
 
 const fundingSourceToTranslationKey = Object.freeze({

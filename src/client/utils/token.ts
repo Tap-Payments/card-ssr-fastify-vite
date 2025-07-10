@@ -1,6 +1,6 @@
 import { cleanCountryCode } from '../../server/utils/string'
-import { Integration } from '../types'
-import type { Authentication } from '../types/Authentication'
+import { Integration } from '@shared/types'
+import type { Authentication } from '@shared/types/Authentication'
 import { isFalsyOrEmptyObject } from './object'
 import { resetEmptyString } from './string'
 import packageJson from '../../../package.json'

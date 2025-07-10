@@ -1,5 +1,5 @@
-import DarkTheme from '../data/darkTheme.json'
-import LightTheme from '../data/lightTheme.json'
+import DarkTheme from '@shared/data/darkTheme.json'
+import LightTheme from '@shared/data/lightTheme.json'
 
 export enum Locale {
 	en = 'en',

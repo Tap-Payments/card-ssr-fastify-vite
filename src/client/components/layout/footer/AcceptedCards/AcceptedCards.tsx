@@ -1,11 +1,12 @@
 import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
+
+import { useTheme } from '@hooks/useTheme'
+import { Locale, Page_Direction } from '@shared/types'
+import { Opacity } from '../../../Animation'
 import PaymentIconsList from '../../../icons/PaymentIconsList'
 
-import { useTheme } from '../../../../hooks'
-import { Opacity } from '../../../Animation'
 import styles from './AcceptedCards.module.css'
-import { Locale, Page_Direction } from '../../../../types'
 
 interface AcceptedCardsProps {
 	dir?: string

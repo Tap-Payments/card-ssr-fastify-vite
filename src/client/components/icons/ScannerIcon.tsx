@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
 import { useTheme } from '../../hooks'
-import { SvgIconProps } from '../../types/common'
+import { SvgIconProps } from '@shared/types/common'
 
 interface NFCIconProps extends SvgIconProps {
 	onClick?: () => void

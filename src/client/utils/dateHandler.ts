@@ -1,8 +1,8 @@
 import valid from 'card-validator'
-import { isValidString } from '../../server/utils/string'
-import { Integration, Purpose } from '../types'
-import type { AppProps } from '../types/Card'
-import type { CURRENCIES } from '../types/paymentOption'
+import { isValidString } from '@server/utils/string'
+import { Integration, Purpose } from '@shared/types'
+import type { AppProps } from '@shared/types/Card'
+import type { CURRENCIES } from '@shared/types/paymentOption'
 
 export const expireDateValidate = (value: string | number) => {
 	const dateValid = valid.expirationDate(value)

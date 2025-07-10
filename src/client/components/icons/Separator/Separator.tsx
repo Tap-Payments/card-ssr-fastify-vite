@@ -1,5 +1,5 @@
 import React, { type FC } from 'react'
-import { useTheme } from '../../../hooks/useTheme'
+import { useTheme } from '@hooks/useTheme'
 import styles from './Separator.module.css'
 
 const Separator: FC = () => {

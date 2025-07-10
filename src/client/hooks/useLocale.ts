@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { getConfig } from '../features/configSlice'
-import { Locale, Page_Direction, Page_Alignment } from '../types'
+import { getConfig } from '@features/configSlice'
+import { Locale, Page_Direction, Page_Alignment } from '@shared/types'
 import i18n from '../i18n'
 
 export const useLocale = () => {

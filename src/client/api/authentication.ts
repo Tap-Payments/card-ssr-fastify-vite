@@ -1,8 +1,8 @@
 import { AxiosError, AxiosRequestConfig } from 'axios'
-import { configProps } from '../types/configProps'
+import { configProps } from '@shared/types/configProps'
 import HTTPClient, { BackendError } from './axios'
 
-import { AuthenticationResponse } from '../types/Authentication'
+import { AuthenticationResponse } from '@shared/types/Authentication'
 import { mapCustomerToApi } from '../utils/token'
 
 type CreateAuthenticationProps = {

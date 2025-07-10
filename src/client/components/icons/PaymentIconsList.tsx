@@ -4,7 +4,7 @@ import styles from './PaymentIconsList.module.css'
 import { useTheme } from '../../hooks'
 import { useSelector } from 'react-redux'
 import { getConfig } from '../../features/configSlice'
-import { Integration } from '../../types'
+import { Integration } from '@shared/types'
 
 const PaymentIconsList: React.FC = () => {
 	const { themeMode } = useTheme()

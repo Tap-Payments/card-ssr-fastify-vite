@@ -1,6 +1,6 @@
 import type { PaymentMethod } from '@tap-payments/acceptance-sdk'
 import type { RootState } from '../app/store'
-import { CardBrands, type CURRENCIES, type PAYMENT_METHODS, type SupportedCards } from '../types/paymentOption'
+import { CardBrands, type CURRENCIES, type PAYMENT_METHODS, type SupportedCards } from '@shared/types/paymentOption'
 import { isSupportedCurrency } from './paymentMethod/isSupportedCurrency'
 
 type paymentMethodsName = keyof typeof PAYMENT_METHODS

@@ -1,4 +1,4 @@
-import type { CURRENCIES } from '../../types/paymentOption'
+import type { CURRENCIES } from '@shared/types/paymentOption'
 
 export const isSupportedCurrency = ({
 	currencyCode,

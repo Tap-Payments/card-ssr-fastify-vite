@@ -1,14 +1,16 @@
 import React, { memo } from 'react'
 import { useTranslation } from 'react-i18next'
-import CheckBox from '../../../icons/CheckBox'
-import styles from './SaveCard.module.css'
-import { useLocale, useTheme } from '../../../../hooks'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { getConfig } from '../../../../features/configSlice'
-import { sendEventGeneric } from '../../../../utils'
-import { getGlobalState, toggleSaveCardForLater } from '../../../../features/globalSlice'
+import CheckBox from '../../../icons/CheckBox'
+import { useTheme } from '@hooks/useTheme'
+import { useLocale } from '@hooks/useLocale'
+import { getConfig } from '@features/configSlice'
+import { sendEventGeneric } from '@utils'
+import { getGlobalState, toggleSaveCardForLater } from '@features/globalSlice'
 import { Opacity } from '../../../Animation'
+
+import styles from './SaveCard.module.css'
 
 interface SaveCardProps {
 	style?: React.CSSProperties

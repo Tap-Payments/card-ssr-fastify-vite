@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
-import { getConfig } from '../features/configSlice'
-import { SuperThemeMode, ThemeMode } from '../types'
-import darkTheme from '../data/darkTheme.json'
-import lightTheme from '../data/lightTheme.json'
+import { getConfig } from '@features/configSlice'
+import { SuperThemeMode, ThemeMode } from '@shared/types'
+import darkTheme from '@shared/data/darkTheme.json'
+import lightTheme from '@shared/data/lightTheme.json'
 import { useLocale } from './useLocale'
-import { getSuperThemeMode } from '../utils'
+import { getSuperThemeMode } from '@utils'
 
 export const useTheme = () => {
 	const { theme: currentTheme, themeMode } = useSelector(getConfig)

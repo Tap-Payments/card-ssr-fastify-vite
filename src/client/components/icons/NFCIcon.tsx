@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { SvgIconProps } from '../../types/common'
+import { SvgIconProps } from '@shared/types/common'
 import { useTheme } from '../../hooks'
 
 interface NFCIconProps extends SvgIconProps {

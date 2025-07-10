@@ -1,18 +1,18 @@
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
-import { setDateValid, getDate, setIsUserDoneTyping } from '../../../features/dateSlice'
-import { getCard, setMode } from '../../../features/cardSlice'
-import { isFuture } from '../../../utils/dateHandler'
-import { getConfig } from '../../../features/configSlice'
-import { getGlobalState } from '../../../features/globalSlice'
-import { sendEventGeneric } from '../../../utils'
+import { useMask, format } from '@react-input/mask'
+
+import { setDateValid, getDate, setIsUserDoneTyping } from '@features/dateSlice'
+import { getCard, setMode } from '@features/cardSlice'
+import { isFuture, sendEventGeneric } from '@utils'
+import { getConfig } from '@features/configSlice'
+import { getGlobalState } from '@features/globalSlice'
+import { useLocale } from '@hooks/useLocale'
+import { useExpiryDate } from '@hooks/useExpiryDate'
+import { useInputStyle } from '@hooks/useInputStyle'
 
 import styles from './ExpiryDate.module.css'
-import { useLocale } from '../../../hooks'
-import { useExpiryDate } from '../../../hooks/useExpiryDate'
-import { useInputStyle } from '../../../hooks/useInputStyle'
-import { useMask, format } from '@react-input/mask'
 
 interface InputState {
 	value: string

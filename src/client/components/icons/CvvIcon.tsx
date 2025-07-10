@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import { useTheme } from '../../hooks'
+import { useTheme } from '@hooks/useTheme'
 
 interface CvvIconProps {
 	width?: number

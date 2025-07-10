@@ -4,15 +4,14 @@ import { FastifyPluginAsync } from 'fastify'
 import ErrorHandler from '@server/services/ErrorHandler'
 import { ViteDevServer } from 'vite'
 
-
 process.on('unhandledRejection', async (err: Error) => {
 	console.error('err', err.message)
 	await ErrorHandler.logToSlack('Server Error', { error: err.message })
 })
 export type AppOptions = {
 	// Export the interface
-    vite: ViteDevServer;
-    isProd: boolean;
+	vite: ViteDevServer
+	isProd: boolean
 	// Place your custom options for app below here.
 } & Partial<AutoloadPluginOptions>
 

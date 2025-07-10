@@ -15,20 +15,20 @@ import {
 	useDimensionEvent,
 	useHandleRedirects
 } from '../hooks'
-import { sendEventGeneric } from '../utils'
-
-import { getGlobalState } from '../features/globalSlice'
-import { getCard } from '../features/cardSlice'
-import { getConfig } from '../features/configSlice'
-import { getAuthentication } from '../features/authenticationSlice'
+import { sendEventGeneric } from '@utils'
+import { getGlobalState } from '@features/globalSlice'
+import { getCard } from '@features/cardSlice'
+import { getConfig } from '@features/configSlice'
+import { getAuthentication } from '@features/authenticationSlice'
 import Animation from './Animation'
-import styles from './container.module.css'
 import { Borders } from '../utils/layout'
-import { Edges } from '../types'
+import { Edges } from '@shared/types'
 import packageJson from '../../../package.json'
 import { getHolderName } from '../features/holdernameSlice'
 import FirstTruthyOf from './shared/FirstTruthyOf'
-import { THREE_DS_HEIGHT } from '../config/constant'
+import { THREE_DS_HEIGHT } from '@shared/config/constant'
+
+import styles from './container.module.css'
 
 const Container = () => {
 	const inputsContainerRef = useRef<ElementRef<'section'>>(null)

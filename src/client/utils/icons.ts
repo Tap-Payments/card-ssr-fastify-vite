@@ -1,4 +1,4 @@
-import { CURRENCIES, PAYMENT_METHODS } from '../types/paymentOption'
+import { CURRENCIES, PAYMENT_METHODS } from '@shared/types/paymentOption'
 
 // FIXME: image url will be from CDN not static.
 const FLAG_BASE_URL = `../../images/flags`

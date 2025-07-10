@@ -1,8 +1,8 @@
 import React from 'react'
 import { App } from '../components/app'
-import type { configProps } from '../types/configProps'
-import type { Card } from '../types/Card'
-import type { PaymentOption } from '../types/paymentOption'
+import type { configProps } from '@shared/types/configProps'
+import type { Card } from '@shared/types/Card'
+import type { PaymentOption } from '@shared/types/paymentOption'
 
 import '../i18n'
 import '../icons.css'

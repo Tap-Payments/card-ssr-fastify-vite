@@ -8,9 +8,9 @@ import {
 	setIsUserDoneTyping,
 	setPrevCvvState
 } from '../features/cvvSlice'
-import { getGlobalState } from '../features/globalSlice'
-import { setIsInEnglish } from '../features/cardSlice'
-import { allCharsInEN } from '../utils'
+import { getGlobalState } from '@features/globalSlice'
+import { setIsInEnglish } from '@features/cardSlice'
+import { allCharsInEN } from '@utils'
 
 export const useCvv = () => {
 	const { t } = useTranslation()

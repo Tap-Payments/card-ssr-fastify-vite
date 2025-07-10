@@ -1,8 +1,8 @@
 import axios from 'axios'
-import LocaleFile from '../data/localization.json'
-import LightThemeFile from '../data/lightTheme.json'
-import DarkThemeFile from '../data/darkTheme.json'
-import { ThemeMode } from '../types'
+import LocaleFile from '@shared/data/localization.json'
+import LightThemeFile from '@shared/data/lightTheme.json'
+import DarkThemeFile from '@shared/data/darkTheme.json'
+import { ThemeMode } from '@shared/types'
 
 function getLocale(url: string) {
 	return axios({

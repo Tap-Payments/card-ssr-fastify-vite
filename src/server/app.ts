@@ -76,7 +76,7 @@ export async function createApp(isProd: boolean) {
 		})
 	})
 
-	const vite : ViteDevServer = await createViteServer({
+	const vite: ViteDevServer = await createViteServer({
 		server: { middlewareMode: true },
 		appType: 'custom',
 		logLevel: IS_TEST ? 'error' : 'info'
@@ -93,7 +93,7 @@ export async function createApp(isProd: boolean) {
 		fastify.register(fastifyHelmet, helmetFrame)
 	}
 
-	await fastify.register(app, { vite, isProd }); // Pass vite and isProd to wrapperRouter
+	await fastify.register(app, { vite, isProd }) // Pass vite and isProd to wrapperRouter
 
 	fastify.setNotFoundHandler((req, reply) => {
 		reply.code(404).type('text/html').send('Page Not Found')

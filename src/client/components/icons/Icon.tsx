@@ -1,5 +1,5 @@
 import React, { memo } from 'react'
-import type { CURRENCIES, PAYMENT_METHODS } from '../../types/paymentOption'
+import type { CURRENCIES, PAYMENT_METHODS } from '@shared/types/paymentOption'
 
 interface IconProps {
 	type: CURRENCIES | PAYMENT_METHODS

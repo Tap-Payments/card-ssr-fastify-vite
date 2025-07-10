@@ -1,6 +1,6 @@
 import React, { memo } from 'react'
-import type { SvgIconProps } from '../../types/common'
-import { useTheme } from '../../hooks'
+import type { SvgIconProps } from '@shared/types/common'
+import { useTheme } from '@hooks/useTheme'
 
 interface CardIconProps extends SvgIconProps {
 	width?: number

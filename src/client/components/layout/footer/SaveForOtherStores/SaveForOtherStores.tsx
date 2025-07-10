@@ -10,12 +10,12 @@ import {
 	toggleSaveForOtherStores,
 	setShowSaveForOtherStoresToolTip,
 	toggleShowSaveForOtherStoresToolTip
-} from '../../../../features/globalSlice'
+} from '@features/globalSlice'
+import { getConfig } from '@features/configSlice'
+import { sendEventGeneric } from '@utils'
+import { useTheme } from '@hooks/useTheme'
 
 import styles from './SaveForOtherStores.module.css'
-import { getConfig } from '../../../../features/configSlice'
-import { sendEventGeneric } from '../../../../utils'
-import { useTheme } from '../../../../hooks'
 
 interface SaveForOtherStoresProps {
 	style?: React.CSSProperties

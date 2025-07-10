@@ -1,11 +1,12 @@
 import React, { memo } from 'react'
 import { useSelector } from 'react-redux'
+
 import Error from './footer/Error'
 import SaveCard from './footer/SaveCard'
-
 import { getConfig } from '../../features/configSlice'
+import { useTheme } from '@hooks/useTheme'
+
 import styles from './Footer.module.css'
-import { useTheme } from '../../hooks'
 
 interface FooterProps {
 	isError: boolean

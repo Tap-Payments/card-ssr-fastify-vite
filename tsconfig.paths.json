@@ -8,7 +8,6 @@
 			"@static/*": ["static/*"],
 			"@utils": ["src/client/utils"],
 			"@api": ["src/client/api"],
-			"@config": ["src/client/config"],
 			"@shared/*": ["src/shared/*"]
 		}
 	}

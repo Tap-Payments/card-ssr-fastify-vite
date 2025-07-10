@@ -1,6 +1,6 @@
 import { useTranslation as useTranslationBase } from 'react-i18next'
-import { Locale } from '../config/locale'
-import type { DeepKeys } from '../types'
+import { Locale } from '@shared/config/locale'
+import type { DeepKeys } from '@shared/types'
 
 type LocaleType = DeepKeys<(typeof Locale)['en']>
 

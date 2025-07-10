@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../app/store'
-import { Card } from '../types/Card'
+import { Card } from '@shared/types/Card'
 
 // create a global state slice for the app that stores Save card for later checkbox state
 export interface GlobalState {

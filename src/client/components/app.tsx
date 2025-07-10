@@ -2,12 +2,12 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { store } from '../app/store'
 import Container from './container'
-import type { AppProps } from '../types/Card'
-import { Integration, Purpose, Scope } from '../types'
-import { sendEventGeneric, validateAppConfig } from '../utils'
-import type { configProps, Features } from '../types/configProps'
-import { setSaveCardForLater } from '../features/globalSlice'
-import { changeHolderNameValue } from '../features/holdernameSlice'
+import type { AppProps } from '@shared/types/Card'
+import { Integration, Purpose, Scope } from '@shared/types'
+import { sendEventGeneric, validateAppConfig } from '@utils'
+import type { configProps, Features } from '@shared/types/configProps'
+import { setSaveCardForLater } from '@features/globalSlice'
+import { changeHolderNameValue } from '@features/holdernameSlice'
 import {
 	setCards,
 	setConfig,
@@ -25,7 +25,7 @@ import {
 	setPowered,
 	setCardCVV,
 	setSavedCardCVV
-} from '../features/configSlice'
+} from '@features/configSlice'
 
 export const App: React.FC<AppProps> = ({
 	errorData,
@@ -41,7 +41,7 @@ export const App: React.FC<AppProps> = ({
 	permission,
 	isNewConfig
 }: Readonly<AppProps>) => {
-	console.log('App Props:', { integrationMode });
+	console.log('App Props:', { integrationMode })
 
 	const [appConfig, setAppConfig] = React.useState<AppProps | null>(null)
 	const [ready, setReady] = React.useState(false)
