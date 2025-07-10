@@ -1,5 +1,5 @@
 import React from 'react'
-import { App } from '../components/app'
+import { App } from '@components/app'
 import type { configProps } from '@shared/types/configProps'
 import type { Card } from '@shared/types/Card'
 import type { PaymentOption } from '@shared/types/paymentOption'

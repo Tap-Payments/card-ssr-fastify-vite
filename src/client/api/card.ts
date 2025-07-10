@@ -1,9 +1,9 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import { AxiosError, AxiosRequestConfig } from 'axios'
 import HTTPClient, { BackendError } from './axios'
 import { BinTypeI } from '@shared/types/BinTypeI'
 import { configProps } from '@shared/types/configProps'
 import { CardVerifyI } from '@shared/types/CardVerifyI'
-import { removeWhitespaces } from '../utils'
+import { removeWhitespaces } from '@utils'
 
 // single charge by id to use in /charges/:id
 type GetBINRes = BinTypeI
