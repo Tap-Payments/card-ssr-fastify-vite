@@ -16,14 +16,13 @@ import redisConfig from '@server/config/redis'
 import ErrorHandler from '@server/services/ErrorHandler'
 import helmetFrame from '@server/config/helmetFrame'
 import app from '@server/config/app'
-import controller from './controllers/baseController'
 
-// load .env file
-config()
-
-const IS_TEST = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
+const isProd = process.env.NODE_ENV === 'production'
+const isTest = process.env.NODE_ENV === 'test' || !!process.env.VITE_TEST_BUILD
 const rootPath = path.resolve(__dirname, '..', '..')
 const resolve = (p: string) => path.resolve(rootPath, p)
+
+config({ path: path.resolve(rootPath, isProd ? '.env' : '.env.development') })
 
 export const getStyleSheets = async () => {
 	try {
@@ -41,7 +40,7 @@ export const getStyleSheets = async () => {
 	}
 }
 
-export async function createApp(isProd: boolean) {
+export async function createApp() {
 	const fastify: FastifyInstance = Fastify({ logger: true, trustProxy: true, ignoreTrailingSlash: true })
 
 	await fastify.register(middie)
@@ -79,7 +78,7 @@ export async function createApp(isProd: boolean) {
 	const vite: ViteDevServer = await createViteServer({
 		server: { middlewareMode: true },
 		appType: 'custom',
-		logLevel: IS_TEST ? 'error' : 'info'
+		logLevel: isTest ? 'error' : 'info'
 	})
 	fastify.use(vite.middlewares)
 
