@@ -9,7 +9,6 @@ import fastifyRateLimit from '@fastify/rate-limit'
 import fastifyJwt from '@fastify/jwt'
 import { createServer as createViteServer, ViteDevServer } from 'vite'
 import middie from '@fastify/middie'
-import fastifyCompress from '@fastify/compress'
 
 import rateLimitConfig from '@server/config/rateLimit'
 import redisConfig from '@server/config/redis'
