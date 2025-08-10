@@ -1,0 +1,47 @@
+.switch {
+	width: 51px;
+	height: 31px;
+	position: relative;
+}
+
+.switch .switch-checkbox {
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	-ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=0)';
+	filter: alpha(opacity=0);
+	opacity: 0;
+	z-index: 100;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+}
+
+.switch .switch-label {
+	display: block;
+	height: 100%;
+	border-radius: 30px;
+	transition: all 0.5s ease;
+}
+
+.switch .switch-checkbox ~ .switch-label .switch-button {
+	display: block;
+	height: 27px;
+	width: 27px;
+	position: absolute;
+	left: 2px;
+	top: 2px;
+	z-index: 2;
+	border-radius: inherit;
+	background: #fff;
+	transition: all 0.5s ease;
+}
+
+.switch .switch-checkbox:checked ~ .switch-label .switch-button {
+	left: auto;
+	left: calc(100% - 29px);
+	transition: all 0.5s ease;
+}

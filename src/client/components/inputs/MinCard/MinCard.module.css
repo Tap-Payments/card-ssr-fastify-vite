@@ -1,0 +1,24 @@
+.cardinput_class {
+	letter-spacing: 0;
+	border: 0px;
+	outline: none;
+	flex: 1;
+	margin-inline-start: var(--card-margin-inline);
+}
+
+.cardinput_class:focus-visible {
+	border: 0px;
+	outline: none;
+}
+
+.mini_card_input,
+.date_input {
+	display: none;
+}
+.show_right {
+	animation-name: fadein;
+	animation-fill-mode: forwards;
+	animation-duration: 0.5s;
+	display: block;
+	width: 100px;
+}
