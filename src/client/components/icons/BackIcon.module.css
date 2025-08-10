@@ -1,7 +1,0 @@
-[dir='rtl'] .back-icon {
-	transform: rotate(180deg);
-}
-
-[dir='ltr'] .back-icon {
-	transform: unset;
-}

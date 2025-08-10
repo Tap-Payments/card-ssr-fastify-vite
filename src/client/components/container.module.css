@@ -1,8 +1,0 @@
-.container {
-	height: auto;
-	max-width: var(--card-max-width);
-	min-height: var(--card-header-min-height);
-	overflow: hidden;
-	/* we need to set that margin here to show the shadow*/
-	margin: var(--card-margin-inline);
-}
