@@ -1,3 +1,3 @@
-import CardHolderName from './CardHolderName'
+import CardHolderName from "./CardHolderName";
 
-export default CardHolderName
+export default CardHolderName;

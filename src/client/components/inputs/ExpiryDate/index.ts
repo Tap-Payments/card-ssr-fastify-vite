@@ -1,3 +1,3 @@
-import ExpiryDate from './ExpiryDate'
+import ExpiryDate from "./ExpiryDate";
 
-export default ExpiryDate
+export default ExpiryDate;

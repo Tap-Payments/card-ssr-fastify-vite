@@ -1,3 +1,3 @@
-import AcceptedCards from './AcceptedCards'
+import AcceptedCards from "./AcceptedCards";
 
-export default AcceptedCards
+export default AcceptedCards;

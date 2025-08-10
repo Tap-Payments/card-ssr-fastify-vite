@@ -1,3 +1,3 @@
-import MinCard from './MinCard'
+import MinCard from "./MinCard";
 
-export default MinCard
+export default MinCard;

@@ -1,18 +1,20 @@
 import React from 'react'
-import { App } from '@components/app'
-import type { configProps } from '@shared/types/configProps'
-import type { Card } from '@shared/types/Card'
-import type { PaymentOption } from '@shared/types/paymentOption'
+import { App } from '../components/app'
+import type { configProps } from '../../shared/types/configProps'
+import type { Card } from '../../shared/types/Card'
+import type { PaymentOption } from '../../shared/types/paymentOption'
 
-import '../i18n'
+import '../../client/i18n'
 import '../icons.css'
 import '../index.css'
 
-type AppProps = {
-	defaultCardConfiguration: Record<string, string>
-}
-//
-const Card = (props: AppProps) => {
+const Card = () => {
+	const ssrDataElement = document?.getElementById('ssr-data')
+	const ssrData = ssrDataElement ? JSON.parse(ssrDataElement.textContent || '{}') : {}
+
+	if (!ssrData?.cardConfiguration)
+		return <h1>test sample {ssrData?.isServer && 'server render'}</h1>
+
 	const {
 		encryption_key,
 		payment_options,
@@ -25,7 +27,7 @@ const Card = (props: AppProps) => {
 		session,
 		permission,
 		isNewConfig
-	} = props.defaultCardConfiguration
+	} = ssrData.cardConfiguration
 
 	const errorData = error ? JSON.parse(error) : null
 	const cardsValue = cards ? (JSON.parse(cards) as Array<Card>) : []

@@ -1,14 +1,14 @@
-import { cardService } from './card'
-import { tokenService } from './token'
-import { appService } from './app'
-import { authenticationService } from './authentication'
+import { cardService } from "./card";
+import { tokenService } from "./token";
+import { appService } from "./app";
+import { authenticationService } from "./authentication";
 
 const API = {
-	cardService,
+  cardService,
 
-	tokenService,
-	appService,
-	authenticationService
-}
+  tokenService,
+  appService,
+  authenticationService,
+};
 
-export default API
+export default API;

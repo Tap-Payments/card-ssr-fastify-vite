@@ -1,3 +1,3 @@
-import SaveCard from './SaveCard'
+import SaveCard from "./SaveCard";
 
-export default SaveCard
+export default SaveCard;

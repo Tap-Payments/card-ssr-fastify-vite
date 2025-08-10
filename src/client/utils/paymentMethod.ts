@@ -1,111 +1,130 @@
-import type { PaymentMethod } from '@tap-payments/acceptance-sdk'
-import type { RootState } from '../app/store'
-import { CardBrands, type CURRENCIES, type PAYMENT_METHODS, type SupportedCards } from '@shared/types/paymentOption'
-import { isSupportedCurrency } from './paymentMethod/isSupportedCurrency'
+import type { PaymentMethod } from "@tap-payments/acceptance-sdk";
+import type { RootState } from "../app/store";
+import {
+  type CURRENCIES,
+  type PAYMENT_METHODS,
+  type SupportedCards,
+} from "@shared/types/paymentOption";
+import { isSupportedCurrency } from "./paymentMethod/isSupportedCurrency";
 
-type paymentMethodsName = keyof typeof PAYMENT_METHODS
+type paymentMethodsName = keyof typeof PAYMENT_METHODS;
 
-export function filterAllowedCardMethods(paymentMethods: RootState['config']['paymentOptions']) {
-	return paymentMethods.filter(({ payment_type }) => payment_type.toLocaleUpperCase() === 'CARD')
+export function filterAllowedCardMethods(
+  paymentMethods: RootState["config"]["paymentOptions"],
+) {
+  return paymentMethods.filter(
+    ({ payment_type }) => payment_type.toLocaleUpperCase() === "CARD",
+  );
 }
 
 export function filterPaymentMethodsByNames<T = PaymentMethod>({
-	paymentMethods,
-	names
+  paymentMethods,
+  names,
 }: {
-	paymentMethods: RootState['config']['paymentOptions']
-	names: paymentMethodsName[]
+  paymentMethods: RootState["config"]["paymentOptions"];
+  names: paymentMethodsName[];
 }): T[] {
-	return paymentMethods.filter(({ name }) => names.includes(name as any)) as T[]
+  return paymentMethods.filter(({ name }) =>
+    names.includes(name as any),
+  ) as T[];
 }
 
 export function getPaymentMethodByName({
-	paymentMethods,
-	name
+  paymentMethods,
+  name,
 }: {
-	paymentMethods: RootState['config']['paymentOptions']
-	name: paymentMethodsName
+  paymentMethods: RootState["config"]["paymentOptions"];
+  name: paymentMethodsName;
 }) {
-	return paymentMethods.find((method) => method.name === name)
+  return paymentMethods.find((method) => method.name === name);
 }
 
 export function supportedCardsByPaymentMethod({
-	paymentMethods,
-	supportedCardBrands
+  paymentMethods,
+  supportedCardBrands,
 }: {
-	paymentMethods: RootState['config']['paymentOptions']
-	supportedCardBrands: PaymentMethod['supported_card_brands']
+  paymentMethods: RootState["config"]["paymentOptions"];
+  supportedCardBrands: PaymentMethod["supported_card_brands"];
 }) {
-	return filterPaymentMethodsByNames<SupportedCards>({
-		paymentMethods,
-		names: supportedCardBrands as paymentMethodsName[]
-	})
+  return filterPaymentMethodsByNames<SupportedCards>({
+    paymentMethods,
+    names: supportedCardBrands as paymentMethodsName[],
+  });
 }
 
 export function getClickToPaySupportedCards({
-	paymentMethods
+  paymentMethods,
 }: {
-	paymentMethods: RootState['config']['paymentOptions']
-}): RootState['config']['allCards'] {
-	const clickToPayPaymentMethod = getPaymentMethodByName({
-		paymentMethods,
-		name: 'CLICK2PAY'
-	}) as unknown as SupportedCards
-	if (!clickToPayPaymentMethod) {
-		return [] as unknown as RootState['config']['allCards']
-	}
+  paymentMethods: RootState["config"]["paymentOptions"];
+}): RootState["config"]["allCards"] {
+  const clickToPayPaymentMethod = getPaymentMethodByName({
+    paymentMethods,
+    name: "CLICK2PAY",
+  }) as unknown as SupportedCards;
+  if (!clickToPayPaymentMethod) {
+    return [] as unknown as RootState["config"]["allCards"];
+  }
 
-	const clickToPaySupportedCards = supportedCardsByPaymentMethod({
-		paymentMethods,
-		supportedCardBrands: clickToPayPaymentMethod?.supported_card_brands || []
-	})
+  const clickToPaySupportedCards = supportedCardsByPaymentMethod({
+    paymentMethods,
+    supportedCardBrands: clickToPayPaymentMethod?.supported_card_brands || [],
+  });
 
-	const supportedCardsWithC2P = [clickToPayPaymentMethod, ...clickToPaySupportedCards].map((card) => ({
-		...card,
-		isDisabled: false
-	}))
+  const supportedCardsWithC2P = [
+    clickToPayPaymentMethod,
+    ...clickToPaySupportedCards,
+  ].map((card) => ({
+    ...card,
+    isDisabled: false,
+  }));
 
-	return supportedCardsWithC2P
+  return supportedCardsWithC2P;
 }
 
 export function getAcceptedCards({
-	allCards,
-	currencyCode
+  allCards,
+  currencyCode,
 }: {
-	allCards: RootState['config']['allCards']
-	currencyCode: string | string[]
+  allCards: RootState["config"]["allCards"];
+  currencyCode: string | string[];
 }) {
-	const acceptedCards = allCards
-		.filter(
-			(item) =>
-				item.payment_type === 'card' &&
-				isSupportedCurrency({
-					currencyCode,
-					supportedCurrencies: item.supported_currencies as unknown as CURRENCIES[]
-				})
-		)
-		.sort((a, b) => (a.order_by > b.order_by ? 1 : -1)) as unknown as Array<SupportedCards>
+  const acceptedCards = allCards
+    .filter(
+      (item) =>
+        item.payment_type === "card" &&
+        isSupportedCurrency({
+          currencyCode,
+          supportedCurrencies:
+            item.supported_currencies as unknown as CURRENCIES[],
+        }),
+    )
+    .sort((a, b) =>
+      a.order_by > b.order_by ? 1 : -1,
+    ) as unknown as Array<SupportedCards>;
 
-	return acceptedCards
+  return acceptedCards;
 }
 
 export function getNotAcceptedCards({
-	allCards,
-	currencyCode
+  allCards,
+  currencyCode,
 }: {
-	allCards: RootState['config']['allCards']
-	currencyCode: string | string[]
+  allCards: RootState["config"]["allCards"];
+  currencyCode: string | string[];
 }) {
-	const notAcceptedCards = allCards
-		.filter(
-			(item) =>
-				item.payment_type === 'card' &&
-				!isSupportedCurrency({
-					currencyCode,
-					supportedCurrencies: item.supported_currencies as unknown as CURRENCIES[]
-				})
-		)
-		.sort((a, b) => (a.order_by > b.order_by ? 1 : -1)) as unknown as Array<SupportedCards>
+  const notAcceptedCards = allCards
+    .filter(
+      (item) =>
+        item.payment_type === "card" &&
+        !isSupportedCurrency({
+          currencyCode,
+          supportedCurrencies:
+            item.supported_currencies as unknown as CURRENCIES[],
+        }),
+    )
+    .sort((a, b) =>
+      a.order_by > b.order_by ? 1 : -1,
+    ) as unknown as Array<SupportedCards>;
 
-	return notAcceptedCards
+  return notAcceptedCards;
 }

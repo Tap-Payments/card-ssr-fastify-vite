@@ -24,7 +24,7 @@ import Animation from './Animation'
 import { Borders } from '../utils/layout'
 import { Edges } from '@shared/types'
 import packageJson from '../../../package.json'
-import { getHolderName } from '../features/holdernameSlice'
+import { getHolderName } from '@features/holdernameSlice'
 import FirstTruthyOf from './shared/FirstTruthyOf'
 import { THREE_DS_HEIGHT } from '@shared/config/constant'
 

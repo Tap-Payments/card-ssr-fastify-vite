@@ -1,3 +1,3 @@
-import SaveForOtherStores from './SaveForOtherStores'
+import SaveForOtherStores from "./SaveForOtherStores";
 
-export default SaveForOtherStores
+export default SaveForOtherStores;

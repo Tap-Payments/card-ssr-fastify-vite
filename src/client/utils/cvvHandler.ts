@@ -6,5 +6,5 @@
  * Example size: 3 mask="999"  , size: 4 mask="9999"
  */
 export function maskStringFromNumber(size: number): string {
-	return Array.from({ length: size }, () => '_').join('')
+  return Array.from({ length: size }, () => "_").join("");
 }

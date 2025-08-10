@@ -1,3 +1,3 @@
-import Cvv from './Cvv'
+import Cvv from "./Cvv";
 
-export default Cvv
+export default Cvv;

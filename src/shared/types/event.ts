@@ -1,49 +1,52 @@
 export type EventType =
-	| 'loadingIframe'
-	| '3dsRedirect'
-	| '3dsFail'
-	| 'tokenize'
-	| 'saveCard'
-	| 'loadSavedCard'
-	| 'hideSavedCardOption'
-	| 'updatePaymentOption'
-	| 'reset'
-	| 'updateThemeMode'
-	| 'updatePublicKey'
-	| 'token'
-	| 'authentication'
-	| '3dsResponse'
-	| 'dimension'
-	| 'borderRadius'
-	| 'backgroundColor'
-	| 'savedCard'
-	| 'cardInputs'
-	| 'bin'
-	| 'saveCardForLaterTap'
-	| 'saveCardForLater'
-	| 'resetLoadedCard'
-	| 'focused'
-	| 'redirectUrl'
-	| 'onCardReady'
-	| 'brand'
-	| 'error'
-	| 'hideErrorFooter'
-	| 'completeTyping'
-	| 'on3dsRedirect'
-	| 'loadAuthentication'
-	| 'cancelAuthentication'
-	| 'onScannerClick'
-	| 'onNfcClick'
-	| 'fillCardInputs'
-	| 'on3dsFinish'
-	| 'sendIP'
-	| 'sendHeaders'
-	| 'click2Pay'
+  | "loadingIframe"
+  | "3dsRedirect"
+  | "3dsFail"
+  | "tokenize"
+  | "saveCard"
+  | "loadSavedCard"
+  | "hideSavedCardOption"
+  | "updatePaymentOption"
+  | "reset"
+  | "updateThemeMode"
+  | "updatePublicKey"
+  | "token"
+  | "authentication"
+  | "3dsResponse"
+  | "dimension"
+  | "borderRadius"
+  | "backgroundColor"
+  | "savedCard"
+  | "cardInputs"
+  | "bin"
+  | "saveCardForLaterTap"
+  | "saveCardForLater"
+  | "resetLoadedCard"
+  | "focused"
+  | "redirectUrl"
+  | "onCardReady"
+  | "brand"
+  | "error"
+  | "hideErrorFooter"
+  | "completeTyping"
+  | "on3dsRedirect"
+  | "loadAuthentication"
+  | "cancelAuthentication"
+  | "onScannerClick"
+  | "onNfcClick"
+  | "fillCardInputs"
+  | "on3dsFinish"
+  | "sendIP"
+  | "sendHeaders"
+  | "click2Pay";
 
-export type actionType = '3dsIframe:onStart' | '3dsIframe:onReady' | '3dsIframe:onFinish'
+export type actionType =
+  | "3dsIframe:onStart"
+  | "3dsIframe:onReady"
+  | "3dsIframe:onFinish";
 
 export type EventMessage<T> = {
-	event: EventType
-	data: T
-	action?: actionType
-}
+  event: EventType;
+  data: T;
+  action?: actionType;
+};

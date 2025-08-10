@@ -1,9 +1,9 @@
-import { Card } from './Card'
+import { Card } from "./Card";
 
 export interface TokenTypeI {
-	id: string
-	live_mode: string
-	type: string
-	used: string
-	card: Card
+  id: string;
+  live_mode: string;
+  type: string;
+  used: string;
+  card: Card;
 }
