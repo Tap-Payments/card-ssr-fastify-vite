@@ -1,44 +1,25 @@
-import fastify from "fastify";
-import path from "path";
+import { createApp } from "./server/app.js";
 
-const server = fastify({ logger: true });
+const PORT = Number(process.env.PORT || 4001);
+const HOST = process.env.HOST || "127.0.0.1";
 
-// Register static files plugin for assets
-await server.register(import("@fastify/static"), {
-  root: path.join(process.cwd(), "dist/client"),
-  prefix: "/",
-});
+let initialized = false;
+async function main() {
+  if (initialized) return;
+  initialized = true;
 
-// Register routes
-await server.register(import("./server/routes.js"), { prefix: "/api" });
+  createApp()
+    .then((app) => {
+      app.listen({ port: Number(PORT), host: HOST }, () => {
+        console.log(
+          `App is listening on http://localhost:${PORT}, Environment: ${process.env.NODE_ENV}`
+        );
+      });
+    })
+    .catch((e) => {
+      console.error(e);
+      process.exit(1);
+    });
+}
 
-// SSR route for React app
-server.get("/react", async (request, reply) => {
-  try {
-    const { renderApp } = await import("./server/ssr.js");
-    const html = await renderApp();
-    reply.type("text/html").send(html);
-  } catch (error) {
-    server.log.error(error);
-    reply.code(500).send({ error: "Internal Server Error" });
-  }
-});
-
-// Health check
-server.get("/health", async (request, reply) => {
-  return { status: "ok", timestamp: new Date().toISOString() };
-});
-
-const start = async () => {
-  try {
-    const port = process.env.PORT ? Number(process.env.PORT) : 3000;
-    await server.listen({ port, host: "0.0.0.0" });
-    server.log.info(`Server running on http://localhost:${port}`);
-    server.log.info(`React app available at http://localhost:${port}/react`);
-  } catch (err) {
-    server.log.error(err);
-    process.exit(1);
-  }
-};
-
-start();
+main();
