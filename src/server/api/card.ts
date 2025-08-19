@@ -33,41 +33,10 @@ const createToken = async (key: string, request: object) => {
   }
 };
 
-const createCardVerify = async (key: string, request: object) => {
-  const options = generateHTTPOptions({
-    publicKey: key,
-  });
-
-  try {
-    const res = await HTTPClient.post(`/card/verify`, request, options);
-    return res;
-  } catch (error: unknown | AxiosError<BackendAPIError>) {
-    const err = error as AxiosError<BackendAPIError>;
-
-    return Promise.reject(err);
-  }
-};
-
-const getCardVerify = async (key: string, id: string) => {
-   const options = generateHTTPOptions({
-     publicKey: key,
-   });
-
-  try {
-    const res = await HTTPClient.get(`/card/verify/${id}`, options);
-    return res;
-  } catch (error: unknown | AxiosError<BackendAPIError>) {
-    const err = error as AxiosError<BackendAPIError>;
-
-    return Promise.reject(err);
-  }
-};
 
 const cardService = {
   createToken,
   getBin,
-  createCardVerify,
-  getCardVerify,
 };
 
 export { cardService };

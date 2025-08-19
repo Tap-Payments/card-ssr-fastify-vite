@@ -11,14 +11,13 @@
 		"build:server": "tsc -p tsconfig.server.json",
 		"build:watch": "concurrently \"npm run build:client -- --watch\" \"npm run build:server -- --watch\"",
 		"dev": "concurrently \"npm run build:watch\" \"nodemon dist/index.js\"",
-		"start": "node dist/index.js"
+		"start": "cross-env NODE_ENV=production node dist/index.js"
 	},
 	"dependencies": {
 		"@tap-payments/acceptance-sdk": "^0.0.72",
 		"@tap-payments/card-web": "1.0.46-development",
 		"classnames": "^2.3.2",
 		"credit-card-type": "^10.0.2",
-		"cross-env": "^7.0.3",
 		"framer-motion": "^12.19.2",
 		"helmet": "^6.0.1",
 		"node-rsa": "^1.1.1",
@@ -33,6 +32,7 @@
 		"vite-tsconfig-paths": "^4.0.5"
 	},
 	"devDependencies": {
+		"cross-env": "^7.0.3",
 		"@fastify/autoload": "^6.3.1",
 		"@fastify/compress": "^8.0.3",
 		"@fastify/cors": "^11.0.1",

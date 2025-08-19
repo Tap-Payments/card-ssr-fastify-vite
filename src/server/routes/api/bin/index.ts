@@ -1,6 +1,6 @@
 import { FastifyPluginAsync } from 'fastify';
-import controller from '../../controllers/baseController.js';
-import RequestParser from '../../services/RequestParser.js';
+import controller from '../../../controllers/baseController.js';
+import RequestParser from '../../../services/RequestParser.js';
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.addHook('preHandler', (request, reply, done) => {
@@ -10,7 +10,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
 
   fastify.route({
     method: 'GET',
-    url: '/transaction/:id/:object',
+    url: '/:id',
     schema: {
       headers: {
         type: 'object',
@@ -22,7 +22,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['Authorization'],
       },
     },
-    handler: (request: any, reply: any) => controller.getTransaction(request, fastify, reply),
+    handler: (request: any, reply: any) => controller.getBin(request, fastify, reply),
   });
 };
 

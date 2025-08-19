@@ -5,7 +5,7 @@ import axios, {
 } from "axios";
 
 const HTTPClient = axios.create({
-  baseURL: `/v2/card`,
+  baseURL: `/api`,
   headers: {
     "Content-Type": "application/json",
     // solve `chrome-only` Queueing of requests issue

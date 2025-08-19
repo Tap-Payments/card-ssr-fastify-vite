@@ -5,7 +5,6 @@ import { authenticationService } from "./authentication";
 
 const API = {
   cardService,
-
   tokenService,
   appService,
   authenticationService,

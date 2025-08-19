@@ -13,7 +13,6 @@ import {
 	useTheme,
 	useValidatePost,
 	useDimensionEvent,
-	useHandleRedirects
 } from '../hooks'
 import { sendEventGeneric } from '@utils'
 import { getGlobalState } from '@features/globalSlice'
@@ -67,7 +66,6 @@ const Container = () => {
 
 	const { direction, language, pageAlignment } = useLocale()
 	useEvents()
-	useHandleRedirects()
 	useValidatePost()
 	useDimensionEvent()
 

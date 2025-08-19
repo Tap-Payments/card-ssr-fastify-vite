@@ -1,69 +1,6 @@
 import axios from "axios";
-import RedisHelper from "./RedisHelper.js";
 import UtilityHelper from "./UtilityHelper.js";
 export default class ApiHelper {
-  static async postCall(body: any, key: string) {}
-
-  static async getKey(fastify: any, key: string, reply: any) {
-    const isSecretKey = await RedisHelper.getKey(fastify, key);
-    let secretKey: string | null | void = null;
-    const body = {
-      key,
-    };
-    if (isSecretKey == null) {
-      const goLoginResponse = await this.callGologin(body);
-      if (
-        goLoginResponse.status != 200 &&
-        goLoginResponse.data.data.private_key == undefined
-      ) {
-        reply.statusCode = 400;
-
-        reply.send(goLoginResponse);
-        return;
-      } else {
-        await RedisHelper.setKey(
-          fastify,
-          key,
-          goLoginResponse.data.data.private_key,
-          reply
-        );
-        secretKey = goLoginResponse.data.data.private_key;
-      }
-    } else {
-      secretKey = isSecretKey;
-    }
-
-    return secretKey;
-  }
-  static async callGologin(body: { key: string; site_url?: string }) {
-    try {
-      const options = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
-      const response = await axios.post(
-        `${process.env.API_BASE || "https://api.tap.company/v2"}/gologin/private`,
-        body,
-        options
-      );
-
-      const data = response.data;
-      const status = response.status;
-      return { data, status };
-    } catch (error: any) {
-      const message: string = error.message ? error.message : "";
-      const status: number =
-        error !== null &&
-        typeof error.response.status === "number" &&
-        typeof error.response === "object"
-          ? error.response.status
-          : 500;
-
-      return { status, message };
-    }
-  }
   static isLivePublicKey(pk: string) {
     return pk.includes("pk_live");
   }

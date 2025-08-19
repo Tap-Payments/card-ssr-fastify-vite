@@ -240,55 +240,7 @@ export const useEvents = () => {
         }
         if (tokenReceived) {
           isScopeToken && handleClearInputs();
-          if (event === "saveCard") {
-            const request_verify = {
-              source: { id: tokenReceived.id },
-              redirect: { url: window.location.href },
-              save_card: true,
-              threeDSecure: true,
-              customer: {
-                locale: configProps.paymentOptions?.locale ?? "en",
-                id: customerId,
-                first_name: nameValue ?? "",
-              },
-              currency:
-                typeof configProps?.paymentOptions?.currencyCode === "string"
-                  ? configProps?.paymentOptions?.currencyCode
-                  : (configProps?.paymentOptions?.currencyCode?.[0] ?? ""),
-            };
-
-            const verifyCard = await API.cardService.createCardVerify({
-              configProps,
-              request: request_verify,
-              refererUrl,
-            });
-
-            if (verifyCard.status === "INITIATED") {
-              localStorage.setItem("verifyCardId", verifyCard.id);
-              sendEventGeneric(refererUrl, {
-                event: "3dsRedirect",
-                data: { threeDsRedirect: true },
-              });
-              window.location.replace(verifyCard.transaction.url);
-              sendEventGeneric(refererUrl, {
-                event: "loadingIframe",
-                data: true,
-              });
-              dispatch(setLoading(true));
-              dispatch(setHideCardFor3ds(true));
-            } else {
-              sendEventGeneric(refererUrl, {
-                event: "3dsFail",
-                data: { threeDsFail: verifyCard.response },
-              });
-              sendEventGeneric(refererUrl, {
-                event: "loadingIframe",
-                data: false,
-              });
-              dispatch(setLoading(false));
-            }
-            return;
-          } else if (
+           if (
             event === "tokenize" &&
             [Scope.AUTHENTICATED_TOKEN].includes(scope)
           ) {

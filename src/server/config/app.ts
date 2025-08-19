@@ -2,7 +2,6 @@ import { fileURLToPath } from "url";
 import { dirname, join } from "path";
 import AutoLoad, { AutoloadPluginOptions } from "@fastify/autoload";
 import { FastifyPluginAsync } from "fastify";
-import { ViteDevServer } from "vite";
 import ErrorHandler from "../services/ErrorHandler.js";
 
 // Recreate __dirname
@@ -13,12 +12,7 @@ process.on("unhandledRejection", async (err: Error) => {
   console.error("err", err.message);
   await ErrorHandler.logToSlack("Server Error", { error: err.message });
 });
-export type AppOptions = {
-  // Export the interface
-  vite: ViteDevServer;
-  isProd: boolean;
-  // Place your custom options for app below here.
-} & Partial<AutoloadPluginOptions>;
+export type AppOptions = Partial<AutoloadPluginOptions>;
 
 const app: FastifyPluginAsync<AppOptions> = async (
   fastify,

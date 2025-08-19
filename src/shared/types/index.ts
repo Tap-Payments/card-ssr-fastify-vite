@@ -2,7 +2,6 @@ export * from "./enum.js";
 export * from "./assets.js";
 export * from "./Authentication.js";
 export * from "./BinTypeI.js";
-export * from "./CardVerifyI.js";
 export * from "./Customer.js";
 export * from "./ResponseTypeI.js";
 export * from "./TokenTypeI.js";

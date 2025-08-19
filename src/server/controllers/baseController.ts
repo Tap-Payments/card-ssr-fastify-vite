@@ -14,7 +14,6 @@ import type { getMappedAuth } from "../utils/getMappedAuth.js";
 import type { getMappedPaymentOption } from "../utils/getMappedPaymentOption.js";
 class Controller {
   constructor() {}
-
   isCardLoadedInternally(integration: Integration, session: string) {
     return (
       [Integration.CHECKOUT, Integration.WEBVIEW].includes(integration) &&
@@ -210,7 +209,6 @@ class Controller {
       }
     }
   }
-
   async renderFrame(request: any, fastify: any, reply: any) {
     const results = await this.getCardProfileData(request, fastify, reply);
     try {
@@ -255,7 +253,6 @@ class Controller {
       throw error;
     }
   }
-
   async makeFrame(request: any, fastify: any, reply: any) {
     try {
       const html = await this.renderFrame(request, fastify, reply);
@@ -266,46 +263,11 @@ class Controller {
       return;
     }
   }
-  async getCardVerify(request: any, fastify: any, reply: any) {
+  async getBin(request: any, fastify: any, reply: any) {
     try {
-      const { id } = request.params;
-      const response = await API.cardService.getCardVerify(
+      const response = await API.cardService.getBin(
         request.xTapSecretKey,
-        id
-      );
-
-      const { data, status } = response;
-      await reply.code(status).send(data);
-      return;
-    } catch (error: unknown | BackendAPIError) {
-      const err = error as BackendAPIError;
-      ErrorHandler.sendErrorResponse(err, reply);
-      return;
-    }
-  }
-
-  async getTransaction(request: any, fastify: any, reply: any) {
-    try {
-      const { id, object } = request.params;
-      const response = await API.transactionService.getTransaction(
-        request.xTapSecretKey,
-        id,
-        object
-      );
-      const { data, status } = response;
-      await reply.code(status).send(data);
-      return;
-    } catch (error: unknown | BackendAPIError) {
-      const err = error as BackendAPIError;
-      ErrorHandler.sendErrorResponse(err, reply);
-      return;
-    }
-  }
-  async createCardVerify(request: any, fastify: any, reply: any) {
-    try {
-      const response = await API.cardService.createCardVerify(
-        request.xTapSecretKey,
-        request.body
+        request.params.id
       );
 
       const { data, status } = response;
@@ -350,7 +312,6 @@ class Controller {
       return;
     }
   }
-
   async createAuthenticate(request: any, fastify: any, reply: any) {
     try {
       const { encryptedData, ...otherData } = request.body;
@@ -374,7 +335,6 @@ class Controller {
       return;
     }
   }
-
   async getAuthenticate(request: any, fastify: any, reply: any) {
     try {
       const response = await API.authenticateService.getAuthenticate(
@@ -391,35 +351,8 @@ class Controller {
       return;
     }
   }
-
-  async getBin(request: any, fastify: any, reply: any) {
-    try {
-      const response = await API.cardService.getBin(
-        request.xTapSecretKey,
-        request.params.id
-      );
-
-      const { data, status } = response;
-      await reply.code(status).send(data);
-      return;
-    } catch (error: unknown | BackendAPIError) {
-      const err = error as BackendAPIError;
-      ErrorHandler.sendErrorResponse(err, reply);
-      return;
-    }
-  }
   async makeWrapper(_request: any, _fastify: any, reply: any) {
-    const manifest_path = path.join(
-      process.cwd(),
-      "../../static/wrapper/manifest.json"
-    );
-    const manifest = fs.readFileSync(manifest_path, "utf-8");
-    const assets = JSON.parse(manifest);
-    const wrapper_path = "/dist/server/views/wrapper.ejs";
-    return reply.view(wrapper_path, {
-      ENABLE_REDUX_TOOLKIT: process.env.ENABLE_REDUX_TOOLKIT,
-      assets,
-    });
+    return;
   }
 }
 const controller = new Controller();

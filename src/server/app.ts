@@ -6,19 +6,22 @@ import fastifyRedis from "@fastify/redis";
 import fastifyHelmet from "@fastify/helmet";
 import fastifyRateLimit from "@fastify/rate-limit";
 import fastifyJwt from "@fastify/jwt";
-import { createServer as createViteServer, ViteDevServer } from "vite";
 import middie from "@fastify/middie";
 
 import rateLimitConfig from "./config/rateLimit.js";
 import redisConfig from "./config/redis.js";
 import ErrorHandler from "./services/ErrorHandler.js";
 import helmetFrame from "./config/helmetFrame.js";
-import app from './config/app.js'
+import app from "./config/app.js";
 
 const isProd = process.env.NODE_ENV === "production";
-const isTest = process.env.NODE_ENV === "test" || !!process.env.VITE_TEST_BUILD;
 
-config({ path: path.resolve(process.cwd(), isProd ? ".env" : ".env.development") });
+config({
+  path: path.resolve(process.cwd(), isProd ? ".env" : ".env.development"),
+});
+
+console.log(`Environment: ${process.env.NODE_ENV}`);
+
 
 export async function createApp() {
   const fastify: FastifyInstance = Fastify({
@@ -66,24 +69,12 @@ export async function createApp() {
     }
   );
 
-  const vite: ViteDevServer = await createViteServer({
-    server: { middlewareMode: true },
-    appType: "custom",
-    logLevel: isTest ? "error" : "info",
+  await fastify.register(fastifyStatic, {
+    root: path.resolve("dist/client"),
+    prefix: "/",
   });
-  fastify.use(vite.middlewares);
-
-  if (isProd) {
-    // fastify.register(fastifyCompress)
-    await fastify.register(fastifyStatic, {
-      root: path.resolve("dist/client"),
-      prefix: "/", // optional: serve from root
-    });
-    
-    fastify.register(fastifyHelmet, helmetFrame);
-  }
-
-  await fastify.register(app, { vite, isProd }) // Pass vite and isProd to wrapperRouter
+  fastify.register(fastifyHelmet, helmetFrame);
+  await fastify.register(app);
 
   fastify.setNotFoundHandler((req, reply) => {
     reply.code(404).type("text/html").send("Page Not Found");

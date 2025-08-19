@@ -37,42 +37,6 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
     handler: async (req: any, res: any) =>
       await controller.makeFrame(req, fastify, res),
   });
-
-  fastify.route({
-    method: "POST",
-    url: "/verify",
-    schema: {
-      headers: {
-        type: "object",
-        properties: {
-          Authorization: {
-            type: "string",
-          },
-        },
-        required: ["Authorization"],
-      },
-    },
-    handler: (request: any, reply: any) =>
-      controller.createCardVerify(request, fastify, reply),
-  });
-
-  fastify.route({
-    method: "GET",
-    url: "/verify/:id",
-    schema: {
-      headers: {
-        type: "object",
-        properties: {
-          Authorization: {
-            type: "string",
-          },
-        },
-        required: ["Authorization"],
-      },
-    },
-    handler: (request: any, reply: any) =>
-      controller.getCardVerify(request, fastify, reply),
-  });
 };
 
 export default index;
