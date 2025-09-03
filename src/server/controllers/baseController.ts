@@ -352,7 +352,39 @@ class Controller {
     }
   }
   async makeWrapper(_request: any, _fastify: any, reply: any) {
-    return;
+    try {
+      // Read the client-side HTML template
+      const wrapperDistPath = path.join(process.cwd(), "dist/wrapper");
+      let htmlTemplate: string;
+      try {
+        htmlTemplate = fs.readFileSync(
+          path.join(wrapperDistPath, "index.html"),
+          "utf-8"
+        );
+      } catch (error) {
+        // Fallback HTML template if built files don't exist
+        htmlTemplate = `
+            <!DOCTYPE html>
+            <html lang="en">
+              <head>
+                <meta charset="UTF-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                <title>React ERROR SSR App</title>
+              </head>
+              <body>
+                <div id="root"><!--app-html--></div>
+                <script type="module" src="/static/wrapper/assets/main.js"></script>
+              </body>
+            </html>
+          `;
+      }
+      reply.type("text/html").send(htmlTemplate);
+    } catch (error) {
+      const err = error as BackendAPIError;
+      console.error("Error rendering app:", err);
+      ErrorHandler.sendErrorResponse(err, reply);
+      throw error;
+    }
   }
 }
 const controller = new Controller();

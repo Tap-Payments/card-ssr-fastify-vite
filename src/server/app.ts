@@ -68,11 +68,19 @@ export async function createApp() {
       });
     }
   );
-
+  
   await fastify.register(fastifyStatic, {
-    root: path.resolve("dist/client"),
-    prefix: "/",
+    root: path.resolve('dist/client'),
+    prefix: '/',
+    decorateReply: false // Optional: to prevent conflicts in reply decorators
   });
+  
+  await fastify.register(fastifyStatic, {
+    root: path.resolve('dist/wrapper'),
+    prefix: '/wrapper/', // This prefix will serve files from dist/wrapper under the /wrapper/ path
+    decorateReply: false // Optional: to prevent conflicts in reply decorators
+  });
+
   fastify.register(fastifyHelmet, helmetFrame);
   await fastify.register(app);
 

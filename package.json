@@ -6,10 +6,11 @@
 	"type": "module",
 	"scripts": {
 		"predev": "node src/shared/scripts/generateTheme.js && node src/shared/scripts/generateLocale.js",
-		"build": "npm run build:client && npm run build:server",
-		"build:client": "vite build",
+		"build": "npm run build:client && npm run build:wrapper && npm run build:server",		
+		"build:client": "vite build --config vite.config.client.js",
+		"build:wrapper": "vite build --config vite.config.wrapper.js",
 		"build:server": "tsc -p tsconfig.server.json",
-		"build:watch": "concurrently \"npm run build:client -- --watch\" \"npm run build:server -- --watch\"",
+		"build:watch": "concurrently \"npm run build:client -- --watch\" \"npm run build:wrapper -- --watch\" \"npm run build:server -- --watch\"",
 		"dev": "concurrently \"npm run build:watch\" \"nodemon dist/index.js\"",
 		"start": "cross-env NODE_ENV=production node dist/index.js"
 	},

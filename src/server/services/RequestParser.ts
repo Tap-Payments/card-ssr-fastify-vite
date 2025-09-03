@@ -16,8 +16,9 @@ export default class RequestParser {
       typeof request.query.auth_payer === "undefined"
     ) {
       if (
-        request.query.integration &&
-        request.query.integration === "webview"
+        true
+        //request.query.integration &&
+        //request.query.integration === "webview"
       ) {
         // done();
       } else {

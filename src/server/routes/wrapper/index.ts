@@ -4,7 +4,7 @@ import controller from '../../controllers/baseController.js';
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.route({
     method: 'GET',
-    url: '/',
+    url: '.html',
     schema: {
       querystring: {
         type: 'object',

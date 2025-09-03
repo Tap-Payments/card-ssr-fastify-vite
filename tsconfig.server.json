@@ -14,7 +14,11 @@
 		"forceConsistentCasingInFileNames": true,
 		"incremental": true,
 		"jsx": "react-jsxdev",
-		"lib": ["DOM", "DOM.Iterable", "ESNext"],
+		"lib": [
+			"DOM",
+			"DOM.Iterable",
+			"ESNext"
+		],
 		"strict": true,
 		"outDir": "dist",
 		"module": "ESNext",
@@ -24,6 +28,15 @@
 		"sourceMap": true,
 		"target": "ES2020"
 	},
-	"include": ["src/server", "src/shared", "src/index.ts"],
-	"exclude": ["node_modules", "dist", "src/client"]
+	"include": [
+		"src/server",
+		"src/shared",
+		"src/index.ts"
+	],
+	"exclude": [
+		"node_modules",
+		"dist",
+		"src/client",
+		"src/wrapper"
+	]
 }
