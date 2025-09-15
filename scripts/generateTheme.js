@@ -49,15 +49,15 @@ async function generateThemes() {
 		themeURL: lightThemeURL,
 		constName: 'LightThemeObject',
 		objectName: 'web-light-v2',
-		themeFileName: path.join(__dirname, '../config/light.ts'),
-		themeJSONFileName: path.join(__dirname, '../data/lightTheme.json')
+		themeFileName: path.join(__dirname, '../src/shared/config/light.ts'),
+		themeJSONFileName: path.join(__dirname, '../src/shared/data/lightTheme.json')
 	})
 	await generateTheme({
 		themeURL: darkThemeURL,
 		constName: 'DarkThemeObject',
 		objectName: 'web-dark-v2',
-		themeFileName: path.join(__dirname, '../config/dark.ts'),
-		themeJSONFileName: path.join(__dirname, '../data/darkTheme.json')
+		themeFileName: path.join(__dirname, '../src/shared/config/dark.ts'),
+		themeJSONFileName: path.join(__dirname, '../src/shared/data/darkTheme.json')
 	})
 }
 

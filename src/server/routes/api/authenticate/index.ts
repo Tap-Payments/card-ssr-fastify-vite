@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import controller from '../../../controllers/baseController.js';
+import authenticateController from '../../../controllers/authenticateController.js';
 import RequestParser from '../../../services/RequestParser.js';
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
@@ -21,7 +21,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['Authorization'],
       },
     },
-    handler: (request: any, reply: any) => controller.createAuthenticate(request, fastify, reply),
+    handler: (request: any, reply: any) => authenticateController.createAuthenticate(request, fastify, reply),
   });
   fastify.route({
     method: 'GET',
@@ -37,7 +37,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['Authorization'],
       },
     },
-    handler: (request: any, reply: any) => controller.getAuthenticate(request, fastify, reply),
+    handler: (request: any, reply: any) => authenticateController.getAuthenticate(request, fastify, reply),
   });
 };
 

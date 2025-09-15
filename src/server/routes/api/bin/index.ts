@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import controller from '../../../controllers/baseController.js';
+import binController from '../../../controllers/binController.js';
 import RequestParser from '../../../services/RequestParser.js';
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
@@ -22,7 +22,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['Authorization'],
       },
     },
-    handler: (request: any, reply: any) => controller.getBin(request, fastify, reply),
+    handler: (request: any, reply: any) => binController.getBin(request, fastify, reply),
   });
 };
 

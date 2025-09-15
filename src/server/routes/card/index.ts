@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from "fastify";
-import controller from "../../controllers/baseController.js";
+import cardController from "../../controllers/cardController.js";
 import RequestParser from "../../services/RequestParser.js";
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
@@ -35,7 +35,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
       },
     },
     handler: async (req: any, res: any) =>
-      await controller.makeFrame(req, fastify, res),
+      await cardController.makeFrame(req, fastify, res),
   });
 };
 

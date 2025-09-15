@@ -5,7 +5,7 @@
 	"main": "dist/index.js",
 	"type": "module",
 	"scripts": {
-		"predev": "node src/shared/scripts/generateTheme.js && node src/shared/scripts/generateLocale.js",
+		"predev": "node scripts/generateTheme.js && node scripts/generateLocale.js",
 		"build": "npm run build:client && npm run build:wrapper && npm run build:server",		
 		"build:client": "vite build --config vite.config.client.js",
 		"build:wrapper": "vite build --config vite.config.wrapper.js",

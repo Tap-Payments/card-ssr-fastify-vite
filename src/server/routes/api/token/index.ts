@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import controller from '../../../controllers/baseController.js';
+import tokenController from '../../../controllers/tokenController.js'
 import RequestParser from '../../../services/RequestParser.js';
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
@@ -21,7 +21,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['Authorization'],
       },
     },
-    handler: (request: any, reply: any) => controller.createToken(request, fastify, reply),
+    handler: (request: any, reply: any) => tokenController.createToken(request, fastify, reply),
   });
 };
 

@@ -42,8 +42,8 @@ async function generateLocales() {
 	await generateLocale({
 		localeURL,
 		constName: 'Locale',
-		localeFileName: path.join(__dirname, '../config/locale.ts'),
-		localeJSONFileName: path.join(__dirname, '../data/localization.json')
+		localeFileName: path.join(__dirname, '../src/shared/config/locale.ts'),
+		localeJSONFileName: path.join(__dirname, '../src/shared/data/localization.json')
 	})
 }
 

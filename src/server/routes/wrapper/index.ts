@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import controller from '../../controllers/baseController.js';
+import wrapperController from '../../controllers/wrapperController.js';
 
 const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
   fastify.route({
@@ -16,7 +16,7 @@ const index: FastifyPluginAsync = async (fastify, opts): Promise<void> => {
         required: ['configurations'],
       },
     },
-    handler: (request: any, reply: any) => controller.makeWrapper(request, fastify, reply),
+    handler: (request: any, reply: any) => wrapperController.makeWrapper(request, fastify, reply),
   });
 };
 
