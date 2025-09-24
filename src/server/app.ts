@@ -22,7 +22,6 @@ config({
 
 console.log(`Environment: ${process.env.NODE_ENV}`);
 
-
 export async function createApp() {
   const fastify: FastifyInstance = Fastify({
     logger: true,
@@ -68,23 +67,32 @@ export async function createApp() {
       });
     }
   );
-  
-  await fastify.register(fastifyStatic, {
-    root: path.resolve('dist/client'),
-    prefix: '/',
-    decorateReply: false // Optional: to prevent conflicts in reply decorators
+
+  const allowedMethods = ["GET", "POST", "PUT", "OPTIONS"];
+  fastify.addHook("onRequest", (request, reply, done) => {
+    if (!allowedMethods.includes(request.method)) {
+      reply.status(405).send({ message: "Method Not Allowed" });
+    } else {
+      done();
+    }
   });
-  
+
   await fastify.register(fastifyStatic, {
-    root: path.resolve('dist/wrapper'),
-    prefix: '/wrapper/', // This prefix will serve files from dist/wrapper under the /wrapper/ path
-    decorateReply: false // Optional: to prevent conflicts in reply decorators
+    root: path.resolve("dist/client"),
+    prefix: "/",
+    decorateReply: false, // Optional: to prevent conflicts in reply decorators
+  });
+
+  await fastify.register(fastifyStatic, {
+    root: path.resolve("dist/wrapper"),
+    prefix: "/wrapper/", // This prefix will serve files from dist/wrapper under the /wrapper/ path
+    decorateReply: false, // Optional: to prevent conflicts in reply decorators
   });
 
   fastify.register(fastifyHelmet, helmetFrame);
   await fastify.register(app);
 
-  fastify.setNotFoundHandler((req, reply) => {
+  fastify.setNotFoundHandler((_req, reply) => {
     reply.code(404).type("text/html").send("Page Not Found");
   });
   return fastify;
