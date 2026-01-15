@@ -8,9 +8,9 @@ import ErrorHandler from "../services/ErrorHandler.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-process.on("unhandledRejection", async (err: Error) => {
-  console.error("err", err.message);
-  await ErrorHandler.logToSlack("Server Error", { error: err.message });
+process.on('unhandledRejection', async (err: Error) => {
+  console.error('err', err.message);
+  await ErrorHandler.logToSlack(err);
 });
 export type AppOptions = Partial<AutoloadPluginOptions>;
 

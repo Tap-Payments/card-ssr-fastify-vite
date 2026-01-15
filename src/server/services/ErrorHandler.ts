@@ -1,8 +1,6 @@
 import { FastifyReply } from 'fastify';
-import * as prettier from 'prettier';
-import FormData from 'form-data';
+import { BackendAPIError } from '../api/HTTPClient';
 import axios from 'axios';
-import { BackendAPIError } from '../api/HTTPClient.js';
 export default class ErrorHandler {
   static async sendErrorResponse(err: BackendAPIError, reply: FastifyReply) {
     const statusCode = typeof err.statusCode == 'number' ? err.statusCode : 503;
@@ -10,10 +8,10 @@ export default class ErrorHandler {
       statusCode !== 503
         ? err.data
         : {
-            error: {
-              description: 'The service is currently unavailable',
-            },
-          };
+          error: {
+            description: 'The service is currently unavailable',
+          },
+        };
     if (statusCode === 503) {
       console.log('503 mapped error', err);
     }
@@ -30,25 +28,6 @@ export default class ErrorHandler {
     }
   }
 
-  static slackMapping = (resObj: any, type: 'error' | 'success') => {
-    const request = resObj.config;
-    const keysToRemove = ['Accept', 'Content-Type', 'priority'];
-    if (request.headers !== undefined) {
-      keysToRemove.forEach(key => {
-        if (request.headers) delete request.headers[key];
-      });
-    }
-    return {
-      request: type === 'success' ? resObj.statusText : resObj.response?.statusText,
-      requestUrl: resObj.config.baseURL ? resObj.config.baseURL + resObj.config.url : null,
-      requestMethod: resObj.config.method?.toUpperCase(),
-      statusCode: type === 'success' ? resObj.status : resObj.response!.status,
-      requestHeaders: JSON.stringify(request.headers),
-      requestBody: request.data,
-      responseBody: JSON.stringify(type === 'success' ? resObj.data : resObj.response?.data),
-    };
-  };
-
   static prettifyStringValues(obj: any): any {
     for (const key in obj) {
       if (typeof obj[key] === 'string') {
@@ -64,56 +43,50 @@ export default class ErrorHandler {
     }
     return obj;
   }
-  /**
-   *
-   * @param error
-   * @param initial_comment
-   * @returns
-   */
-  static async uploadFileSlack(error: any, initial_comment: string, CHANNEL_ID: string) {
-    const prettifiedObject = this.prettifyStringValues(error);
-    const fileContents = await prettier.format(JSON.stringify(prettifiedObject, null, 4), { parser: 'json' });
-    const formData = new FormData();
-    const now = new Date();
-    const timestamp = now.toISOString().replace(/:/g, '-');
-    const filename = `log_${timestamp}.json`;
-    formData.append('file', Buffer.from(fileContents), { filename });
-    if (error.request) {
-      initial_comment = `*REQUEST*: ${error.request}\n`;
-      initial_comment += `*URL* : ${error.requestUrl}\n`;
-      initial_comment += `*METHOD* : ${error.requestMethod}\n`;
-      initial_comment += `*CODE* : ${error.statusCode}\n`;
-    }
-    formData.append('initial_comment', initial_comment);
-    formData.append('channels', CHANNEL_ID);
 
-    // Upload the file to Slack
-    const response = await axios.post('https://slack.com/api/files.upload', formData, {
-      headers: {
-        ...formData.getHeaders(),
-        Authorization: `Bearer ${process.env.SLACK_BOT_TOKEN}`,
-      },
-    });
-    return response;
-  }
   /**
    *
-   * @param errorMessage
    * @param error
-   * @param isSuccessLog
    */
-  static async logToSlack(errorMessage: string, error: any, isSuccessLog = false) {
+  static async logToSlack(error: any) {
     try {
-      const SLACK_ERROR_CHANNEL_ID = process.env.SLACK_ERROR_CHANNEL_ID;
-      const SLACK_ALL_LOGS_CHANNEL_ID = process.env.SLACK_ALL_LOGS_CHANNEL_ID;
-      console.info(`SLACK_ERROR_CHANNEL_ID:${SLACK_ERROR_CHANNEL_ID}`);
-      console.info(`SLACK_ALL_LOGS_CHANNEL_ID:${SLACK_ALL_LOGS_CHANNEL_ID}`);
-      console.info(`SLACK_BOT_TOKEN:${process.env.SLACK_BOT_TOKEN}`);
-      if (!!SLACK_ERROR_CHANNEL_ID && !isSuccessLog) {
-        await ErrorHandler.uploadFileSlack(error, errorMessage, SLACK_ERROR_CHANNEL_ID);
-      }
-      if (!!SLACK_ALL_LOGS_CHANNEL_ID) {
-        await ErrorHandler.uploadFileSlack(error, errorMessage, SLACK_ALL_LOGS_CHANNEL_ID);
+      const SLACK_ERROR_WEBHOOK_URL = process.env.SLACK_ALERTS_WEBHOOK_URL;
+      console.info(`SLACK_ERROR_WEBHOOK_URL:${SLACK_ERROR_WEBHOOK_URL}`);
+      if (!!SLACK_ERROR_WEBHOOK_URL) {
+        let errorTtile = '';
+        let errorDetails = `SERVER TIME: ${new Date().toLocaleString()} \n`;
+        if (error.request) {
+          const jsonDetails = {
+            headers: error.config?.headers || {},
+            response: error.response?.data || {},
+            request: JSON.parse(error.config?.data || {}),
+            errorMessage: error.message || {},
+          };
+          errorTtile = 'Backend API Error :octagonal_sign:';
+          errorDetails += `URL: ${error.config?.baseURL}${error.config?.url}\nMETHOD: ${error.config?.method}\n \n ${JSON.stringify(jsonDetails, null, 2)}`;
+        } else {
+          errorTtile = 'Server Exception Error :octagonal_sign:';
+          errorDetails += `error: ${JSON.stringify(error, null, 2)}\n errorMessage: ${JSON.stringify(error.message, null, 2)}`;
+        }
+        await axios.post(SLACK_ERROR_WEBHOOK_URL, {
+          blocks: [
+            {
+              type: 'header',
+              text: {
+                type: 'plain_text',
+                text: errorTtile,
+                emoji: true,
+              },
+            },
+            {
+              type: 'section',
+              text: {
+                type: 'mrkdwn',
+                text: `*Details*\n` + '```' + errorDetails + '```',
+              },
+            },
+          ],
+        });
       }
     } catch (slackError) {
       console.error('Error posting to Slack:', slackError);

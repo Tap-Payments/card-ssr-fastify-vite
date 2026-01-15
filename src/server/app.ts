@@ -44,37 +44,28 @@ export async function createApp() {
     }
   );
 
-  fastify.setErrorHandler(
-    async (error: any, request: FastifyRequest, reply: any) => {
-      // Handle the error here
-      console.error(error);
-      fastify.log.error(error);
-      const { ip, method, url, ips, body, headers } = request;
-      const requestInfo = { ip, method, url, ips, body, headers };
-      console.error("server_error_request:", JSON.stringify(requestInfo));
-      const errorLogMessage = `Server Error: ${
-        error.message ? error.message : error
-      }`;
-
-      const stackTrace = error.stack ? { stackTrace: error.stack } : {};
-      if (!errorLogMessage.includes("Unsupported Media Type")) {
-        ErrorHandler.logToSlack(errorLogMessage, stackTrace);
-      }
-      // Send an error response to the client
-      reply.status(500).send({
-        error: "Internal Server Error",
-        message: "Something went wrong",
-      });
-    }
-  );
-
-  const allowedMethods = ["GET", "POST", "PUT", "OPTIONS"];
-  fastify.addHook("onRequest", (request, reply, done) => {
+  fastify.addHook('onRequest', (request, reply, done) => {
+    const allowedMethods = ['GET', 'POST', 'PUT', 'OPTIONS'];
     if (!allowedMethods.includes(request.method)) {
-      reply.status(405).send({ message: "Method Not Allowed" });
+      reply.status(405).send({ message: 'Method Not Allowed' });
     } else {
       done();
     }
+  });
+
+  fastify.setErrorHandler(async (error: any, request: FastifyRequest, reply: any) => {
+    // Handle the error here
+    console.error(error);
+    fastify.log.error(error);
+    const { ip, method, url, ips, body, headers } = request;
+    const requestInfo = { ip, method, url, ips, body, headers };
+    console.error('server_error_request:', JSON.stringify(requestInfo));
+    ErrorHandler.logToSlack(error);
+    // Send an error response to the client
+    reply.status(500).send({
+      error: 'Internal Server Error',
+      message: 'Something went wrong',
+    });
   });
 
   await fastify.register(fastifyStatic, {

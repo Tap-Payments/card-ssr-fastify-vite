@@ -37,7 +37,6 @@ export type SlackAPIError = {
 // ** Add request/response interceptor
 HTTPClient.interceptors.response.use(
   (response: AxiosResponse<unknown, unknown>) => {
-    ErrorHandler.logToSlack('', ErrorHandler.slackMapping(response, 'success'), true);
     return response;
   },
   (error: AxiosError<BackendAPIError>) => {
@@ -49,7 +48,7 @@ HTTPClient.interceptors.response.use(
       data: err.response?.data,
     } as BackendAPIError;
 
-    ErrorHandler.logToSlack('', ErrorHandler.slackMapping(error, 'error'));
+    ErrorHandler.logToSlack(error);
     return Promise.reject(ERROR);
   },
 );

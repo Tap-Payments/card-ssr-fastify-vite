@@ -2,28 +2,30 @@
 @font-face {
 	font-family: 'Tap Sans';
 	src:
-		url(https://tap-assets.b-cdn.net/fonts/TapSans/TapSansVF.woff2) format('woff2'),
-		url(https://tap-assets.b-cdn.net/fonts/TapSans/TapSansVF.woff) format('woff'),
-		url(https://tap-assets.b-cdn.net/fonts/TapSans/TapSansVF.ttf) format('truetype');
+		url(https://cdn.tap.company/tap-assets/fonts/TapSans/TapSansVF.woff2) format('woff2'),
+		url(https://cdn.tap.company/tap-assets/fonts/TapSans/TapSansVF.woff) format('woff'),
+		url(https://cdn.tap.company/tap-assets/fonts/TapSans/TapSansVF.ttf) format('truetype');
 }
 
 @font-face {
 	font-family: 'Tap Tajawal';
 	font-display: swap;
 	font-weight: 300;
-	src: url('https://tap-assets.b-cdn.net/fonts/TapTajawal/TajawalTap-Light.ttf') format('truetype');
+	src: url('https://cdn.tap.company/tap-assets/fonts/TapTajawal/TajawalTap-Light.ttf') format('truetype');
 }
+
 @font-face {
 	font-family: 'Tap Tajawal';
 	font-display: swap;
 	font-weight: 400;
-	src: url('https://tap-assets.b-cdn.net/fonts/TapTajawal/TajawalTap-Regular.ttf') format('truetype');
+	src: url('https://cdn.tap.company/tap-assets/fonts/TapTajawal/TajawalTap-Regular.ttf') format('truetype');
 }
+
 @font-face {
 	font-family: 'Tap Tajawal';
 	font-display: swap;
 	font-weight: 500;
-	src: url('https://tap-assets.b-cdn.net/fonts/TapTajawal/TajawalTap-Medium.ttf') format('truetype');
+	src: url('https://cdn.tap.company/tap-assets/fonts/TapTajawal/TajawalTap-Medium.ttf') format('truetype');
 }
 
 :root {
@@ -110,7 +112,7 @@
 }
 
 [dir='rtl'],
-[dir='rtl'] > * {
+[dir='rtl']>* {
 	--font-family: var(--font-family-ar) !important;
 	direction: rtl !important;
 }
@@ -129,6 +131,7 @@
 	word-break: break-word;
 	-webkit-font-smoothing: antialiased;
 }
+
 html {
 	scroll-behavior: smooth;
 	font-size: 10px;
@@ -141,9 +144,8 @@ body {
 	-webkit-box-sizing: border-box;
 	box-sizing: border-box;
 	min-height: 100vh;
-	print-color-adjust: exact !important;
+	color-adjust: exact !important;
 	-webkit-print-color-adjust: exact !important;
-	print-color-adjust: exact !important;
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -161,10 +163,12 @@ body {
 	font-weight: 300;
 	color: var(--placeholder-color);
 }
+
 ::-moz-placeholder {
 	font-weight: 300;
 	color: var(--placeholder-color);
 }
+
 ::placeholder {
 	font-weight: 300;
 	color: var(--placeholder-color);
@@ -174,6 +178,7 @@ html,
 body {
 	font-family: var(--font-family) !important;
 }
+
 picture,
 img {
 	-webkit-user-select: none;
@@ -190,6 +195,7 @@ img {
 	-ms-user-drag: none;
 	user-drag: none;
 }
+
 /* input caret color */
 input {
 	caret-color: #007aff;
@@ -556,6 +562,7 @@ input[type='checkbox'] {
     justify-content: center;
     display: flex; */
 }
+
 /* .icons_image_container:first-of-type {
     margin-left: 12px;
 } */
@@ -751,7 +758,8 @@ input[type='checkbox'] {
 }
 
 .grayscale {
-	-webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+	-webkit-filter: grayscale(100%);
+	/* Safari 6.0 - 9.0 */
 	filter: grayscale(100%);
 }
 
@@ -791,6 +799,7 @@ input:-webkit-autofill:active {
 	from {
 		opacity: 0;
 	}
+
 	to {
 		opacity: 1;
 	}
@@ -800,6 +809,7 @@ input:-webkit-autofill:active {
 	from {
 		opacity: 1;
 	}
+
 	to {
 		opacity: 0;
 	}

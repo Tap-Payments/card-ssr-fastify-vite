@@ -1,4 +1,5 @@
 import { createApp } from "./server/app.js";
+import ErrorHandler from "./server/services/ErrorHandler.js";
 
 const PORT = Number(process.env.PORT || 4001);
 const HOST = process.env.HOST || "127.0.0.1";
@@ -18,6 +19,7 @@ async function main() {
     })
     .catch((e) => {
       console.error(e);
+      ErrorHandler.logToSlack(e);
       process.exit(1);
     });
 }

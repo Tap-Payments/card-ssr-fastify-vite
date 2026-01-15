@@ -85,7 +85,7 @@ const Container = () => {
 	)
 	const isClickToPayEnabled = clickToPay?.enabled === true
 
-	const containerRef = useRef<ElementRef<'form'>>(null)
+	const containerRef = useRef<ElementRef<'div'>>(null);
 
 	const height3DS = useMemo(() => authentication?.height3DS || THREE_DS_HEIGHT, [authentication])
 
@@ -164,15 +164,11 @@ const Container = () => {
 		})
 	}, [themeMode])
 	const version = `iframe_${packageJson.version}`
-	// const sdkVersion = `sdk_${packageJson.dependencies['@tap-payments/card-web']}`
-	const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault()
-		e.stopPropagation()
-	}
+	const sdkVersion = `sdk_${packageJson.dependencies['@tap-payments/card-web']}`
 	const boxShadow = `${offsetHeight} ${offsetWidth} ${radius}px rgba(0, 0, 0, 0.15)`
 	return (
 		<>
-			<form
+			<div
 				style={{
 					position: 'absolute',
 					width: '100%',
@@ -187,8 +183,7 @@ const Container = () => {
 				data-src='jscard-node-mw'
 				ref={containerRef}
 				data-version={version}
-				// data-version-sdk={sdkVersion}
-				onSubmit={handleSubmit}
+				data-version-sdk={sdkVersion}
 			>
 				<section
 					ref={inputsContainerRef}
@@ -319,7 +314,7 @@ const Container = () => {
 							)}
 					</AnimatePresence>
 				</section>
-			</form>
+			</div>
 			<div
 				data-src='jscard-node-mw'
 				data-testid='tap-authentication'
