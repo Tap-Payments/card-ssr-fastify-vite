@@ -22,6 +22,12 @@ config({
 
 console.log(`Environment: ${process.env.NODE_ENV}`);
 
+/**
+ * Creates and configures the Fastify application instance.
+ * Sets up middleware, plugins, hooks, error handling, and static asset serving.
+ * 
+ * @returns {Promise<FastifyInstance>} The configured Fastify instance.
+ */
 export async function createApp() {
   const fastify: FastifyInstance = Fastify({
     logger: true,

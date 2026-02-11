@@ -24,6 +24,12 @@ import { useCardActions } from './useCardActions'
 // eslint-disable-next-line
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
+/**
+ * Hook to manage the tokenization process.
+ * Handles card tokenization, Click to Pay integration, and 3DS authentication flows.
+ * 
+ * @returns {Object} An object containing the handleTokenize function.
+ */
 export const useTokenization = () => {
     const dispatch = useDispatch()
     const { encrypt, loadScr } = useC2P()

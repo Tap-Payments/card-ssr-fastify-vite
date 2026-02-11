@@ -1,3 +1,8 @@
+/**
+ * @file index.ts
+ * @description Main entry point for the Card SSR Fastify application.
+ * Initializes the server and handles fatal startup errors.
+ */
 import { createApp } from "./server/app.js";
 import ErrorHandler from "./server/services/ErrorHandler.js";
 

@@ -1,6 +1,10 @@
 import { FastifyReply } from 'fastify';
 import { BackendAPIError } from '../api/HTTPClient';
 import axios from 'axios';
+/**
+ * Centralized error handling class for logging and alerting.
+ * Provides methods for standardizing error responses and sending alerts to Slack.
+ */
 export default class ErrorHandler {
   static async sendErrorResponse(err: BackendAPIError, reply: FastifyReply) {
     const statusCode = typeof err.statusCode == 'number' ? err.statusCode : 503;
