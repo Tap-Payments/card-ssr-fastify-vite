@@ -1,7 +1,7 @@
 export default {
   contentSecurityPolicy: {
     directives: {
-      defaultSrc: ['https:'],
+      defaultSrc: ["'self'", 'https:'],
       scriptSrc: [
         "'self'",
         "'unsafe-eval'",
@@ -12,7 +12,7 @@ export default {
       objectSrc: ["'none'"],
       formAction: ["'self'"],
       frameAncestors: null,
-      imgSrc: ['self', 'https://tap-assets.b-cdn.net/', 'https://cdn.tap.company/'],
+      imgSrc: ["'self'", 'https://tap-assets.b-cdn.net/', 'https://cdn.tap.company/'],
     },
   },
   expectCt: {

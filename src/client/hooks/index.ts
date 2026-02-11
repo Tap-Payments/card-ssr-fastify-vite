@@ -6,3 +6,4 @@ export * from "./useValidatePost";
 export * from "./useDimension";
 export * from "./useTranslation";
 export * from "./useC2P";
+export * from "./useContainerLogic";
