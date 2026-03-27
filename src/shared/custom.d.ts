@@ -4,7 +4,6 @@ declare module "*.module.css" {
 }
 
 declare module "*.jpg";
-//declare module '*.png';
 
 declare module "*.png" {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -1,26 +1,18 @@
-import React, { useEffect, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
-import {
-  getCard,
-  setIsValid,
-  setIsUserDoneTyping,
-  setMode,
-} from "../../../../features/cardSlice";
-import {
-  getCardType,
-  maskStringFromCardNumber,
-} from "../../../../utils/cardHandler";
-import { getConfig } from "../../../../features/configSlice";
-import { sendEventGeneric } from "../../../../utils/event";
-import { useErrors, useLocale } from "../../../../hooks";
-import { useCardNumber } from "../../../../hooks/useCardNumber";
-import { useInputStyle } from "../../../../hooks/useInputStyle";
-import { resetCVV } from "../../../../features/cvvSlice";
-import { resetDate } from "../../../../features/dateSlice";
-import focusElementByRefiOS from "../../../../utils/focusElement";
-import { removeWhitespaces } from "../../../../utils";
-import { useMask, format } from "@react-input/mask";
+import React, { useEffect, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { getCard, setIsValid, setIsUserDoneTyping, setMode } from '../../../../features/cardSlice';
+import { getCardType, maskStringFromCardNumber } from '../../../../utils/cardHandler';
+import { getConfig } from '../../../../features/configSlice';
+import { sendEventGeneric } from '../../../../utils/event';
+import { useErrors, useLocale } from '../../../../hooks';
+import { useCardNumber } from '../../../../hooks/useCardNumber';
+import { useInputStyle } from '../../../../hooks/useInputStyle';
+import { resetCVV } from '../../../../features/cvvSlice';
+import { resetDate } from '../../../../features/dateSlice';
+import focusElementByRefiOS from '../../../../utils/focusElement';
+import { removeWhitespaces } from '../../../../utils';
+import { useMask, format } from '@react-input/mask';
 
 export function useCreditCard() {
   const dispatch = useDispatch();
@@ -47,10 +39,7 @@ export function useCreditCard() {
     }),
     [mask],
   );
-  const formattedCardValue = useMemo(
-    () => format(cardValue || "", maskOptions),
-    [maskOptions, cardValue],
-  );
+  const formattedCardValue = useMemo(() => format(cardValue || '', maskOptions), [maskOptions, cardValue]);
   const cardRef = useMask(maskOptions);
 
   const validate = () => {
@@ -58,11 +47,11 @@ export function useCreditCard() {
       number: {
         isValid: cardValid,
         isUserDoneTyping,
-        errorMessage: "",
+        errorMessage: '',
       },
     };
-    if (cardValue === "") {
-      eventData.number.errorMessage = "Card Number Required";
+    if (cardValue === '') {
+      eventData.number.errorMessage = 'Card Number Required';
     }
     if (isUserDoneTyping === true) {
       if (
@@ -72,25 +61,25 @@ export function useCreditCard() {
           cardValid === false &&
           trimmedValue.length === cardType.lengths[0])
       ) {
-        eventData.number.errorMessage = "Invalid Card Number";
+        eventData.number.errorMessage = 'Invalid Card Number';
       } else {
-        eventData.number.errorMessage = "";
+        eventData.number.errorMessage = '';
       }
     }
 
     if (isUserDoneTyping !== true && isPotentialCardValid === false) {
-      eventData.number.errorMessage = "Invalid Card Number";
+      eventData.number.errorMessage = 'Invalid Card Number';
     }
 
     if (isUserDoneTyping === true && cardValid === false) {
-      eventData.number.errorMessage = "Invalid Card Number";
+      eventData.number.errorMessage = 'Invalid Card Number';
     }
-    sendEventGeneric(refererUrl, { event: "cardInputs", data: eventData });
+    sendEventGeneric(refererUrl, { event: 'cardInputs', data: eventData });
   };
 
   const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
-    const formattedValue = value.replace(" ", "");
+    const formattedValue = value.replace(' ', '');
     onChangeCardNumber(formattedValue);
   };
 
@@ -99,9 +88,7 @@ export function useCreditCard() {
     dispatch(resetDate());
   };
 
-  const onClickHandler = (
-    event: React.MouseEvent<HTMLInputElement, MouseEvent>,
-  ) => {
+  const onClickHandler = (event: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
     const value_length = cardRef.current?.value.trim().length as number | null;
     if (!value_length) return;
     const target = event.target as HTMLInputElement;
@@ -116,11 +103,11 @@ export function useCreditCard() {
   };
 
   const switchToRight = () => {
-    if (cardValue.length === 0 || cardValid) dispatch(setMode("right"));
+    if (cardValue.length === 0 || cardValid) dispatch(setMode('right'));
   };
 
   const handlePasteAnywhere = (event: any) => {
-    const hasClass = event.target?.classList?.contains("cardinput_class");
+    const hasClass = event.target?.classList?.contains('cardinput_class');
 
     const card = getCardType(event.target?.value);
     if (card?.type) {
@@ -137,28 +124,26 @@ export function useCreditCard() {
   };
   useEffect(() => {
     let timeout: NodeJS.Timeout;
-    if (cardRef.current?.name === "card_input") {
-      const expireDateInput = document.getElementById(
-        "date_input",
-      ) as HTMLElement;
+    if (cardRef.current?.name === 'card_input') {
+      const expireDateInput = document.getElementById('date_input') as HTMLElement;
       const { isValid } = getCardType(trimmedValue);
 
       if (cardType?.lengths && cardType.lengths.length > 0) {
         if (isValid && isFundingSourceValid) {
           dispatch(setIsValid(true));
-          dispatch(setMode("right"));
+          dispatch(setMode('right'));
           if (expireDateInput !== null) {
             timeout = focusElementByRefiOS(expireDateInput, 10);
           }
         } else {
           dispatch(setIsValid(false));
-          dispatch(setMode("left"));
+          dispatch(setMode('left'));
         }
       }
     }
-    window.addEventListener("paste", handlePasteAnywhere);
+    window.addEventListener('paste', handlePasteAnywhere);
     return () => {
-      window.removeEventListener("paste", handlePasteAnywhere);
+      window.removeEventListener('paste', handlePasteAnywhere);
       clearTimeout(timeout);
     };
   }, [mask, cardValue]);
@@ -167,7 +152,7 @@ export function useCreditCard() {
   }, [cardValid, isPotentialCardValid, cardType, isUserDoneTyping]);
 
   useEffect(() => {
-    if (formMode === "left") {
+    if (formMode === 'left') {
       cardRef.current?.focus();
     }
   }, [formMode]);
@@ -189,8 +174,7 @@ export function useCreditCard() {
   const updateUserDoneTyping = React.useCallback(
     (trimmedInputLength: number) => {
       const trimmedMaskLength = removeWhitespaces(mask).length;
-      const updateUserDoneTypingCondition: boolean =
-        trimmedMaskLength - trimmedInputLength <= 1;
+      const updateUserDoneTypingCondition: boolean = trimmedMaskLength - trimmedInputLength <= 1;
       if (updateUserDoneTypingCondition) {
         dispatch(setIsUserDoneTyping(true));
       }
@@ -200,10 +184,8 @@ export function useCreditCard() {
 
   const onKeyHandler = React.useCallback(
     (event: React.KeyboardEvent<HTMLInputElement>) => {
-      const trimmedInputLength = removeWhitespaces(
-        event.currentTarget.value,
-      ).length;
-      if (event.key === "Backspace") {
+      const trimmedInputLength = removeWhitespaces(event.currentTarget.value).length;
+      if (event.key === 'Backspace') {
         dispatch(setIsUserDoneTyping(false));
       } else {
         updateUserDoneTyping(trimmedInputLength);
